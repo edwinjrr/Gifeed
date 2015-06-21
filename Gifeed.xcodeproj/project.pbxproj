@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		212B4A1D1B372D42008BF6DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A1C1B372D42008BF6DC /* AppDelegate.swift */; };
 		212B4A201B372D42008BF6DC /* Gifeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A1E1B372D42008BF6DC /* Gifeed.xcdatamodeld */; };
-		212B4A221B372D42008BF6DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A211B372D42008BF6DC /* ViewController.swift */; };
+		212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A211B372D42008BF6DC /* SearchViewController.swift */; };
 		212B4A251B372D42008BF6DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212B4A231B372D42008BF6DC /* Main.storyboard */; };
 		212B4A271B372D42008BF6DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212B4A261B372D42008BF6DC /* Images.xcassets */; };
 		212B4A2A1B372D42008BF6DC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212B4A281B372D42008BF6DC /* LaunchScreen.xib */; };
 		212B4A361B372D42008BF6DC /* GifeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A351B372D42008BF6DC /* GifeedTests.swift */; };
+		212B4A401B373082008BF6DC /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A3F1B373082008BF6DC /* CoreDataStackManager.swift */; };
+		212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A441B37492C008BF6DC /* CategoriesTableViewController.swift */; };
+		212B4A471B37495D008BF6DC /* SubCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A461B37495D008BF6DC /* SubCategoriesTableViewController.swift */; };
+		212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */; };
+		212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */; };
+		212B4A4D1B374BD9008BF6DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +37,19 @@
 		212B4A1B1B372D42008BF6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212B4A1C1B372D42008BF6DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		212B4A1F1B372D42008BF6DC /* Gifeed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gifeed.xcdatamodel; sourceTree = "<group>"; };
-		212B4A211B372D42008BF6DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		212B4A211B372D42008BF6DC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		212B4A241B372D42008BF6DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		212B4A261B372D42008BF6DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		212B4A291B372D42008BF6DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		212B4A2F1B372D42008BF6DC /* GifeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GifeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212B4A341B372D42008BF6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212B4A351B372D42008BF6DC /* GifeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifeedTests.swift; sourceTree = "<group>"; };
+		212B4A3F1B373082008BF6DC /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		212B4A441B37492C008BF6DC /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		212B4A461B37495D008BF6DC /* SubCategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoriesTableViewController.swift; sourceTree = "<group>"; };
+		212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifsViewController.swift; sourceTree = "<group>"; };
+		212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				212B4A1C1B372D42008BF6DC /* AppDelegate.swift */,
-				212B4A211B372D42008BF6DC /* ViewController.swift */,
+				212B4A3F1B373082008BF6DC /* CoreDataStackManager.swift */,
+				212B4A411B37308B008BF6DC /* Model */,
+				212B4A421B373094008BF6DC /* View */,
+				212B4A431B37309A008BF6DC /* Controller */,
 				212B4A231B372D42008BF6DC /* Main.storyboard */,
 				212B4A261B372D42008BF6DC /* Images.xcassets */,
 				212B4A281B372D42008BF6DC /* LaunchScreen.xib */,
@@ -113,6 +128,33 @@
 				212B4A341B372D42008BF6DC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		212B4A411B37308B008BF6DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		212B4A421B373094008BF6DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				212B4A211B372D42008BF6DC /* SearchViewController.swift */,
+				212B4A441B37492C008BF6DC /* CategoriesTableViewController.swift */,
+				212B4A461B37495D008BF6DC /* SubCategoriesTableViewController.swift */,
+				212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */,
+				212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */,
+				212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		212B4A431B37309A008BF6DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,9 +257,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212B4A221B372D42008BF6DC /* ViewController.swift in Sources */,
+				212B4A4D1B374BD9008BF6DC /* DetailViewController.swift in Sources */,
+				212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */,
+				212B4A401B373082008BF6DC /* CoreDataStackManager.swift in Sources */,
+				212B4A471B37495D008BF6DC /* SubCategoriesTableViewController.swift in Sources */,
 				212B4A1D1B372D42008BF6DC /* AppDelegate.swift in Sources */,
 				212B4A201B372D42008BF6DC /* Gifeed.xcdatamodeld in Sources */,
+				212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */,
+				212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */,
+				212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
