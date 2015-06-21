@@ -20,6 +20,9 @@
 		212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */; };
 		212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */; };
 		212B4A4D1B374BD9008BF6DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */; };
+		212B4A4F1B37509F008BF6DC /* Giphy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A4E1B37509F008BF6DC /* Giphy.swift */; };
+		212B4A511B3750C8008BF6DC /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A501B3750C8008BF6DC /* Gif.swift */; };
+		212B4A531B3750D7008BF6DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A521B3750D7008BF6DC /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifsViewController.swift; sourceTree = "<group>"; };
 		212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		212B4A4E1B37509F008BF6DC /* Giphy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Giphy.swift; sourceTree = "<group>"; };
+		212B4A501B3750C8008BF6DC /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
+		212B4A521B3750D7008BF6DC /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,11 +139,21 @@
 		212B4A411B37308B008BF6DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				212B4A4E1B37509F008BF6DC /* Giphy.swift */,
+				212B4A501B3750C8008BF6DC /* Gif.swift */,
+				212B4A521B3750D7008BF6DC /* ImageCache.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
 		212B4A421B373094008BF6DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		212B4A431B37309A008BF6DC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				212B4A211B372D42008BF6DC /* SearchViewController.swift */,
@@ -146,13 +162,6 @@
 				212B4A4A1B374BA6008BF6DC /* ResultsViewController.swift */,
 				212B4A4C1B374BD9008BF6DC /* DetailViewController.swift */,
 				212B4A481B374B00008BF6DC /* SavedGifsViewController.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		212B4A431B37309A008BF6DC /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -261,11 +270,14 @@
 				212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */,
 				212B4A401B373082008BF6DC /* CoreDataStackManager.swift in Sources */,
 				212B4A471B37495D008BF6DC /* SubCategoriesTableViewController.swift in Sources */,
+				212B4A511B3750C8008BF6DC /* Gif.swift in Sources */,
 				212B4A1D1B372D42008BF6DC /* AppDelegate.swift in Sources */,
+				212B4A531B3750D7008BF6DC /* ImageCache.swift in Sources */,
 				212B4A201B372D42008BF6DC /* Gifeed.xcdatamodeld in Sources */,
 				212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */,
 				212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */,
 				212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */,
+				212B4A4F1B37509F008BF6DC /* Giphy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
