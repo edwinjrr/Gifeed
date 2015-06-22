@@ -20,6 +20,56 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func dowloadTest(sender: AnyObject) {
+        stringSearchTest()
+    }
+    
+    func stringSearchTest() {
+        
+        let textFieldString: String = "grumpy funny cat"
+        let searchStringTest = textFieldString.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        
+        Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringTest, completionHandler: { (results, error) -> Void in
+            
+            if let error = error {
+                println("Error with the Giphy method.") //<--- Setup an AlertView here!
+            }
+            else {
+                
+                if let results = results as [Gif]? {
+                    
+                    if results.isEmpty {
+                        println("Empty array")
+                    }
+                    else {
+                        println(results)
+                    }
+                }
+            }
+        })
+    }
+    
+    func trendingSearchTest() {
+        
+        Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
+            
+            if let error = error {
+                println("Error with the Giphy method.") //<--- Setup an AlertView here!
+            }
+            else {
+                
+                if let results = results as [Gif]? {
+                    
+                    if results.isEmpty {
+                        println("Empty array")
+                    }
+                    else {
+                        println(results)
+                    }
+                }
+            }
+        })
+    }
+    
 }
 

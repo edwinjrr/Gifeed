@@ -28,8 +28,25 @@ class Gif: NSManagedObject {
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         
         imageID = dictionary["id"] as! String
-        animatedImageURL = dictionary["url"] as! String //image >> original >> url
-        stillImageURL = dictionary["url"] as! String //image >> original_still >> url
-        imageSize = dictionary["size"] as! String //image >> original >> size
+        
+        let images = dictionary["images"] as! [String:AnyObject]
+        let original = images["original"] as! [String:AnyObject]
+        let originalStill = images["original_still"] as! [String:AnyObject]
+        
+        animatedImageURL = original["url"] as! String
+        stillImageURL = originalStill["url"] as! String
+        imageSize = original["size"] as! String
     }
+    
+    /* Helper: Given an array of dictionaries, convert them to an array of GIF objects */
+    static func gifsFromResults(results: [[String : AnyObject]], insertIntoManagedObjectContext context: NSManagedObjectContext) -> [Gif] {
+        var gifs = [Gif]()
+        
+        for result in results {
+            gifs.append(Gif(dictionary: result, insertIntoManagedObjectContext: context))
+        }
+        
+        return gifs
+    }
+    
 }

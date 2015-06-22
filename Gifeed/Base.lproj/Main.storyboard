@@ -96,6 +96,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
+                        <barButtonItem key="leftBarButtonItem" title="Download" id="Z2b-DQ-DVC">
+                            <connections>
+                                <action selector="dowloadTest:" destination="9Y7-0S-ugd" id="DQ0-GX-i1q"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Categories" id="Fsj-92-CjW">
                             <connections>
                                 <segue destination="V7T-g4-icn" kind="show" id="qdQ-kK-yEd"/>
