@@ -8,20 +8,75 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
+    @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
+    
+    var gifs = [Gif]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // Layout the collection view
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Lay out the collection view so that cells take up 1/3 of the width, with a small space in between.
+        let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 0
+        
+        let width = floor((self.trendingGifsCollectionView.frame.size.width/3) - 2)
+        layout.itemSize = CGSize(width: width, height: width)
+        trendingGifsCollectionView.collectionViewLayout = layout
     }
+    
+    //MARK: Collection view data source methods
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return gifs.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TrendingGifCell", forIndexPath: indexPath) as! TrendingGifCell
+        
+        let gif = gifs[indexPath.item]
+        
+        cell.loadingIndicator.startAnimating()
+        cell.imageView.image = nil
+        
+        let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
+            
+            if let data = imageData {
+                let image = UIImage(data: data)
+                
+                // update the cell later, on the main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    cell.imageView!.image = image
+                    cell.loadingIndicator.stopAnimating()
+                }
+            }
+        }
+        
+        // This is the custom property on this cell. It uses a property observer,
+        // any time its value is set it canceles the previous NSURLSessionTask.
+        cell.taskToCancelifCellIsReused = task
+        
+        return cell
+    }
+    
+    //MARK: Collection view delegate methods
+    
+    
+    //MARK: Test methods...
 
     @IBAction func dowloadTest(sender: AnyObject) {
-        stringSearchTest()
+        trendingSearchTest()
     }
     
     func stringSearchTest() {
@@ -64,7 +119,10 @@ class SearchViewController: UIViewController {
                         println("Empty array")
                     }
                     else {
-                        println(results)
+                        self.gifs = results
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.trendingGifsCollectionView.reloadData()
+                        }
                     }
                 }
             }

@@ -24,6 +24,7 @@
 		212B4A511B3750C8008BF6DC /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A501B3750C8008BF6DC /* Gif.swift */; };
 		212B4A531B3750D7008BF6DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A521B3750D7008BF6DC /* ImageCache.swift */; };
 		212B4A551B377074008BF6DC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A541B377074008BF6DC /* Reachability.swift */; };
+		21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA60241B38E24100334FFF /* TrendingGifCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		212B4A501B3750C8008BF6DC /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		212B4A521B3750D7008BF6DC /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		212B4A541B377074008BF6DC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		212B4A421B373094008BF6DC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				21DA60241B38E24100334FFF /* TrendingGifCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */,
 				212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */,
 				212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */,
+				21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */,
 				212B4A4F1B37509F008BF6DC /* Giphy.swift in Sources */,
 				212B4A551B377074008BF6DC /* Reachability.swift in Sources */,
 			);
@@ -479,6 +483,7 @@
 				212B4A3B1B372D42008BF6DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		212B4A3C1B372D42008BF6DC /* Build configuration list for PBXNativeTarget "GifeedTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +492,7 @@
 				212B4A3E1B372D42008BF6DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

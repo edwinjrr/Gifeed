@@ -66,33 +66,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MCn-PT-fRm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gnf-QR-Xds">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find some gifs!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
+                                <rect key="frame" x="16" y="64" width="568" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="YTB-93-VrH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XgV-cI-RXU">
+                                <rect key="frame" x="0.0" y="138" width="600" height="413"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Io0-yA-1M5">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingNowCell" id="Ynp-VG-opS">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingGifCell" id="Bcv-NO-eBf" customClass="TrendingGifCell" customModule="Gifeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-I2-XOs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="VUZ-9q-GBD">
+                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="VUZ-9q-GBD" secondAttribute="centerX" id="574-J2-bnH"/>
+                                            <constraint firstAttribute="centerY" secondItem="VUZ-9q-GBD" secondAttribute="centerY" id="C1s-j2-HWM"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="fXG-I2-XOs" secondAttribute="trailing" constant="-8" id="KkQ-TC-jRG"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="fXG-I2-XOs" secondAttribute="bottom" constant="-8" id="L8i-RY-qN0"/>
+                                            <constraint firstItem="fXG-I2-XOs" firstAttribute="top" secondItem="Bcv-NO-eBf" secondAttribute="topMargin" constant="-8" id="Lr2-rP-6xl"/>
+                                            <constraint firstItem="fXG-I2-XOs" firstAttribute="leading" secondItem="Bcv-NO-eBf" secondAttribute="leadingMargin" constant="-8" id="sjl-dB-kAf"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="fXG-I2-XOs" id="TWy-RP-jU9"/>
+                                            <outlet property="loadingIndicator" destination="VUZ-9q-GBD" id="njd-Kb-Wqr"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Y7-0S-ugd" id="fl3-3F-Q5k"/>
+                                    <outlet property="delegate" destination="9Y7-0S-ugd" id="JDK-8b-Nn6"/>
+                                </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending now!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ro-fV-QRg">
+                                <rect key="frame" x="0.0" y="99" width="600" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vqR-BC-8Yz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MCn-PT-fRm" firstAttribute="top" secondItem="asw-Fj-GIH" secondAttribute="topMargin" id="4sH-pK-Y84"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MCn-PT-fRm" secondAttribute="trailing" constant="-16" id="CAR-iV-tKR"/>
-                            <constraint firstItem="MCn-PT-fRm" firstAttribute="bottom" secondItem="asw-Fj-GIH" secondAttribute="bottomMargin" id="aYw-q4-God"/>
-                            <constraint firstItem="MCn-PT-fRm" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="v50-FI-LXE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XgV-cI-RXU" secondAttribute="trailing" constant="-16" id="1sP-E2-40Q"/>
+                            <constraint firstItem="bfE-Xu-6H3" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" id="8bx-yg-HZn"/>
+                            <constraint firstItem="XgV-cI-RXU" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="Dcj-ng-IX6"/>
+                            <constraint firstItem="XgV-cI-RXU" firstAttribute="top" secondItem="6Ro-fV-QRg" secondAttribute="bottom" constant="-1" id="Jxe-Zb-d2J"/>
+                            <constraint firstItem="bfE-Xu-6H3" firstAttribute="top" secondItem="pfr-Bb-u7O" secondAttribute="bottom" id="OSy-oT-xAO"/>
+                            <constraint firstItem="6Ro-fV-QRg" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="gjd-Wu-fhS"/>
+                            <constraint firstItem="bfE-Xu-6H3" firstAttribute="trailing" secondItem="asw-Fj-GIH" secondAttribute="trailingMargin" id="mhA-Ag-I18"/>
+                            <constraint firstItem="0bI-lM-81W" firstAttribute="top" secondItem="XgV-cI-RXU" secondAttribute="bottom" id="rfi-7l-xSE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Ro-fV-QRg" secondAttribute="trailing" constant="-16" id="vQm-4j-Rgh"/>
+                            <constraint firstItem="6Ro-fV-QRg" firstAttribute="top" secondItem="bfE-Xu-6H3" secondAttribute="bottom" id="x4K-ZO-cRY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
@@ -107,6 +155,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchTextField" destination="bfE-Xu-6H3" id="QtC-PD-J82"/>
+                        <outlet property="trendingGifsCollectionView" destination="XgV-cI-RXU" id="TJh-Or-29u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sg-Jq-F2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,7 +181,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cDf-e5-dVq">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -167,7 +219,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tly-EG-kag">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -210,7 +262,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fUs-0S-vrk">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
