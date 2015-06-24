@@ -8,19 +8,35 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var detailImageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var selectedGif: Gif!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        //self.activityIndicator.startAnimating()
+        
+        let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
+            
+            if let data = imageData {
+                let image = UIImage(data: data)
+                
+                // update the cell later, on the main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    //self.detailImageView.image = PPSwiftGifs.animatedImageWithGIFData(imageData)
+                    self.detailImageView.image = image
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

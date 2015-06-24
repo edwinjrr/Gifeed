@@ -90,7 +90,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-I2-XOs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-I2-XOs">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="VUZ-9q-GBD">
@@ -288,7 +288,7 @@
         <!--Gif-->
         <scene sceneID="ucR-ir-Qz0">
             <objects>
-                <viewController id="P30-rL-Cym" customClass="DetailViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="P30-rL-Cym" customClass="DetailViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8mf-va-c9y"/>
                         <viewControllerLayoutGuide type="bottom" id="6Ra-65-gKZ"/>
@@ -297,21 +297,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNO-r7-Qxj">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-9F-jWH">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
+                                <rect key="frame" x="282" y="313" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xNO-r7-Qxj" firstAttribute="top" secondItem="ipm-FQ-hiD" secondAttribute="topMargin" id="0jv-eN-dlf"/>
-                            <constraint firstItem="6Ra-65-gKZ" firstAttribute="top" secondItem="xNO-r7-Qxj" secondAttribute="bottom" id="V10-DD-suV"/>
-                            <constraint firstItem="xNO-r7-Qxj" firstAttribute="leading" secondItem="ipm-FQ-hiD" secondAttribute="leadingMargin" constant="-16" id="ee4-qe-Al4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xNO-r7-Qxj" secondAttribute="trailing" constant="-16" id="pFp-jJ-gYX"/>
+                            <constraint firstItem="6Ra-65-gKZ" firstAttribute="top" secondItem="dCF-9F-jWH" secondAttribute="bottom" id="6d2-0P-tuL"/>
+                            <constraint firstItem="dCF-9F-jWH" firstAttribute="centerY" secondItem="oJl-bb-w1x" secondAttribute="centerY" constant="0.5" id="Ixu-O5-9Bw"/>
+                            <constraint firstItem="dCF-9F-jWH" firstAttribute="top" secondItem="8mf-va-c9y" secondAttribute="bottom" id="Oym-36-KhK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dCF-9F-jWH" secondAttribute="trailing" constant="-16" id="csr-cR-VVp"/>
+                            <constraint firstAttribute="centerX" secondItem="oJl-bb-w1x" secondAttribute="centerX" id="dR8-yv-zCL"/>
+                            <constraint firstItem="dCF-9F-jWH" firstAttribute="leading" secondItem="ipm-FQ-hiD" secondAttribute="leadingMargin" constant="-16" id="xMb-y4-a2h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gif" id="A0q-mk-kmr">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Fd7-Zd-1ck"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="oJl-bb-w1x" id="FTE-17-ngj"/>
+                        <outlet property="detailImageView" destination="dCF-9F-jWH" id="PP0-26-bsj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9l-PO-VH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

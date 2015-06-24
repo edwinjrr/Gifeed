@@ -72,6 +72,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     //MARK: Collection view delegate methods
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")! as! DetailViewController
+        detailController.selectedGif = self.gifs[indexPath.item]
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
     
     //MARK: Test methods...
 
