@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212503EB1B3B7FBE0081C48E /* UIImageGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212503EA1B3B7FBE0081C48E /* UIImageGif.swift */; };
 		212B4A1D1B372D42008BF6DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A1C1B372D42008BF6DC /* AppDelegate.swift */; };
 		212B4A201B372D42008BF6DC /* Gifeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A1E1B372D42008BF6DC /* Gifeed.xcdatamodeld */; };
 		212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A211B372D42008BF6DC /* SearchViewController.swift */; };
@@ -38,7 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		210730541B3A2B8B00F44D7C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		212503E61B3B7A610081C48E /* Gifeed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gifeed-Bridging-Header.h"; sourceTree = "<group>"; };
+		212503EA1B3B7FBE0081C48E /* UIImageGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageGif.swift; sourceTree = "<group>"; };
 		212B4A171B372D42008BF6DC /* Gifeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		212B4A1B1B372D42008BF6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212B4A1C1B372D42008BF6DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 				212B4A421B373094008BF6DC /* View */,
 				212B4A431B37309A008BF6DC /* Controller */,
 				212B4A231B372D42008BF6DC /* Main.storyboard */,
-				210730541B3A2B8B00F44D7C /* Bridging-Header.h */,
 				212B4A261B372D42008BF6DC /* Images.xcassets */,
 				212B4A281B372D42008BF6DC /* LaunchScreen.xib */,
 				212B4A1E1B372D42008BF6DC /* Gifeed.xcdatamodeld */,
@@ -121,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				212B4A1B1B372D42008BF6DC /* Info.plist */,
+				212503E61B3B7A610081C48E /* Gifeed-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -149,6 +151,7 @@
 				212B4A501B3750C8008BF6DC /* Gif.swift */,
 				212B4A521B3750D7008BF6DC /* ImageCache.swift */,
 				212B4A541B377074008BF6DC /* Reachability.swift */,
+				212503EA1B3B7FBE0081C48E /* UIImageGif.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				212B4A131B372D42008BF6DC /* Sources */,
 				212B4A141B372D42008BF6DC /* Frameworks */,
 				212B4A151B372D42008BF6DC /* Resources */,
+				2107306F1B3A4F5200F44D7C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -269,6 +273,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2107306F1B3A4F5200F44D7C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		212B4A131B372D42008BF6DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -277,6 +297,7 @@
 				212B4A4D1B374BD9008BF6DC /* DetailViewController.swift in Sources */,
 				212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */,
 				212B4A401B373082008BF6DC /* CoreDataStackManager.swift in Sources */,
+				212503EB1B3B7FBE0081C48E /* UIImageGif.swift in Sources */,
 				212B4A471B37495D008BF6DC /* SubCategoriesTableViewController.swift in Sources */,
 				212B4A511B3750C8008BF6DC /* Gif.swift in Sources */,
 				212B4A1D1B372D42008BF6DC /* AppDelegate.swift in Sources */,
@@ -416,14 +437,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Gifeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Gifeed/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Gifeed/Gifeed-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -431,14 +455,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Gifeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Gifeed/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Gifeed/Gifeed-Bridging-Header.h";
 			};
 			name = Release;
 		};
