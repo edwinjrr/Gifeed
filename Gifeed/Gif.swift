@@ -49,4 +49,15 @@ class Gif: NSManagedObject {
         return gifs
     }
     
+    //This property will get and save the images of the photos from/to the documents directory.
+    var photoImage: UIImage? {
+        
+        get {
+            return Giphy.Caches.imageCache.imageWithIdentifier("\(imageID).gif")
+        }
+        
+        set {
+            Giphy.Caches.imageCache.storeImage(newValue, withIdentifier: "\(imageID).gif")
+        }
+    }
 }

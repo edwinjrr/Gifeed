@@ -8,15 +8,36 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
+    @IBOutlet weak var searchButton: UIButton!
     
     var gifs = [Gif]()
     
+    var tapRecognizer: UITapGestureRecognizer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Download the more trending Gifs from Giphy
+        downloadTrendingGifs()
+        
+        //Setting up the textfield
+        searchTextField.delegate = self
+        
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        tapRecognizer?.numberOfTapsRequired = 1
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     // Layout the collection view
@@ -79,39 +100,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.navigationController!.pushViewController(detailController, animated: true)
     }
     
-    
-    //MARK: Test methods...
-
-    @IBAction func dowloadTest(sender: AnyObject) {
-        trendingSearchTest()
-    }
-    
-    func stringSearchTest() {
-        
-        let textFieldString: String = "grumpy funny cat"
-        let searchStringTest = textFieldString.stringByReplacingOccurrencesOfString(" ", withString: "+")
-        
-        Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringTest, completionHandler: { (results, error) -> Void in
-            
-            if let error = error {
-                println("Error with the Giphy method.") //<--- Setup an AlertView here!
-            }
-            else {
-                
-                if let results = results as [Gif]? {
-                    
-                    if results.isEmpty {
-                        println("Empty array")
-                    }
-                    else {
-                        println(results)
-                    }
-                }
-            }
-        })
-    }
-    
-    func trendingSearchTest() {
+    func downloadTrendingGifs() {
         
         Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
             
@@ -123,7 +112,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if let results = results as [Gif]? {
                     
                     if results.isEmpty {
-                        println("Empty array")
+                        println("Empty array") //<--- Setup an placeholder image!
                     }
                     else {
                         self.gifs = results
@@ -136,5 +125,40 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
     }
     
+    //MARK: Textfield delegate methods:
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        /* Add tap recognizer to dismiss keyboard */
+        self.addKeyboardDismissRecognizer()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        segueToResultsViewController()
+        
+        return true
+    }
+    
+    func addKeyboardDismissRecognizer() {
+        self.view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        self.view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        self.searchTextField.endEditing(true)
+        self.searchTextField.text = ""
+        
+        /* Remove tap recognizer */
+        self.removeKeyboardDismissRecognizer()
+    }
+    
+    func segueToResultsViewController() {
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController")! as! ResultsViewController
+        detailController.searchString = searchTextField.text
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
 }
 

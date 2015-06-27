@@ -26,6 +26,7 @@
 		212B4A531B3750D7008BF6DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A521B3750D7008BF6DC /* ImageCache.swift */; };
 		212B4A551B377074008BF6DC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A541B377074008BF6DC /* Reachability.swift */; };
 		21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA60241B38E24100334FFF /* TrendingGifCell.swift */; };
+		21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5F0461B3F1C8000382804 /* ResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		212B4A521B3750D7008BF6DC /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		212B4A541B377074008BF6DC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
+		21E5F0461B3F1C8000382804 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				21DA60241B38E24100334FFF /* TrendingGifCell.swift */,
+				21E5F0461B3F1C8000382804 /* ResultCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				212B4A531B3750D7008BF6DC /* ImageCache.swift in Sources */,
 				212B4A201B372D42008BF6DC /* Gifeed.xcdatamodeld in Sources */,
 				212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */,
+				21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */,
 				212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */,
 				212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */,
 				21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */,

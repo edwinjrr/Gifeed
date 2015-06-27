@@ -14,13 +14,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var selectedGif: Gif!
+    var imageIdentifier: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
-                
+        
+        println(selectedGif.animatedImageURL)
+        
         let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
             
             if let data = imageData {
@@ -29,22 +32,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 //update the cell later, on the main thread
                 dispatch_async(dispatch_get_main_queue()) {
                     
-                    //self.detailImageView.image = image
                     self.detailImageView.image = image
                     self.activityIndicator.stopAnimating()
                 }
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

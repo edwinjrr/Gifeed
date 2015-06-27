@@ -1,22 +1,20 @@
 //
-//  TrendingGifCell.swift
+//  ResultCell.swift
 //  Gifeed
 //
-//  Created by Edwin Rodriguez on 6/22/15.
+//  Created by Edwin Rodriguez on 6/27/15.
 //  Copyright (c) 2015 Edwin Rodriguez. All rights reserved.
 //
 
 import UIKit
 
-class TrendingGifCell: UICollectionViewCell {
+class ResultCell: UITableViewCell {
     
-    //Elements of the custom collection view cell:
-    
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var resultImageView: UIImageView!
+    @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    // The property uses a property observer. Any time its
-    // value is set it canceles the previous NSURLSessionTask
     var taskToCancelifCellIsReused: NSURLSessionTask? {
         
         didSet {
