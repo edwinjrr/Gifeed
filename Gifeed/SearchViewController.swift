@@ -13,6 +13,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var trendingNowLabel: UILabel!
     
     var gifs = [Gif]()
     
@@ -128,6 +129,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Textfield delegate methods:
     func textFieldDidBeginEditing(textField: UITextField) {
         
+        self.trendingGifsCollectionView.alpha = 0.25
+        self.trendingNowLabel.alpha = 0.25
+        
         /* Add tap recognizer to dismiss keyboard */
         self.addKeyboardDismissRecognizer()
     }
@@ -149,6 +153,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.searchTextField.endEditing(true)
         self.searchTextField.text = ""
+        self.trendingGifsCollectionView.alpha = 1
+        self.trendingNowLabel.alpha = 1
         
         /* Remove tap recognizer */
         self.removeKeyboardDismissRecognizer()

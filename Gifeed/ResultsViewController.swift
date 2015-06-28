@@ -20,6 +20,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
 
         resultsTableView.rowHeight = UITableViewAutomaticDimension
         resultsTableView.estimatedRowHeight = 350
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,10 +37,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func downloadGifsBySearchString() {
         
-        let textFieldString: String = "grumpy funny cat"
-        let searchStringTest = textFieldString.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        let searchStringFormatted = searchString.stringByReplacingOccurrencesOfString(" ", withString: "+")
         
-        Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringTest, completionHandler: { (results, error) -> Void in
+        Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringFormatted, completionHandler: { (results, error) -> Void in
             
             if let error = error {
                 println("Error with the Giphy method.") //<--- Setup an AlertView here!
@@ -74,9 +74,21 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let gif = gifs[indexPath.row]
         
-        //cell.loadingIndicator.startAnimating()
+        cell.loadingIndicator.startAnimating()
         cell.resultImageView.image = nil
-        //cell.imageView!.image = nil
+        cell.sourceLabel.text = ""
+        cell.sizeLabel.text = ""
+        
+        var sourceStringFormatted: String!
+        
+        if gif.imageSource != "" {
+            sourceStringFormatted = gif.imageSource.stringByReplacingOccurrencesOfString("http://", withString: "")
+        }
+        else {
+            sourceStringFormatted = "Nothing to see here..."
+        }
+        
+        var imageSizeFormatted = sizeNumberFormatting(gif.imageSize)
         
         let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
             
@@ -86,8 +98,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                 // update the cell later, on the main thread
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.resultImageView.image = image
-                    //cell.imageView!.image = image
-                    //cell.loadingIndicator.stopAnimating()
+                    cell.loadingIndicator.stopAnimating()
+                    cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
+                    cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
                 }
             }
         }
@@ -106,5 +119,36 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         detailController.selectedGif = self.gifs[indexPath.row]
         
         self.navigationController!.pushViewController(detailController, animated: true)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    //MARK: Helper methods:
+    
+    func sizeNumberFormatting(imageSizeString: String) -> String {
+        
+        let imageSizeNumber = (imageSizeString as NSString).floatValue
+        var formattedSizeString = ""
+        
+        if imageSizeNumber > 1000000 {
+            
+            var numberOfMB = imageSizeNumber / 1000000
+            var stringNumber = String(stringInterpolationSegment: numberOfMB)
+            formattedSizeString = "\(subStringByRange(stringNumber, start: 0, end: 3)) MB"
+        }
+        else{
+            
+            var numberOfKB = imageSizeNumber / 1000
+            var stringNumber = String(stringInterpolationSegment: numberOfKB)
+            formattedSizeString = "\(subStringByRange(stringNumber, start: 0, end: 3)) KB"
+        }
+        
+        return formattedSizeString
+    }
+    
+    func subStringByRange(string: String, start: Int, end: Int) -> String {
+        let range = Range(start: advance(string.startIndex, start),
+            end: advance(string.startIndex, end))
+        return string.substringWithRange(range)
     }
 }

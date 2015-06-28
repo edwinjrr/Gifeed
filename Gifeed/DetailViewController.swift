@@ -22,7 +22,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         
-        println(selectedGif.animatedImageURL)
+        //println(selectedGif.animatedImageURL)
         
         let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
             
