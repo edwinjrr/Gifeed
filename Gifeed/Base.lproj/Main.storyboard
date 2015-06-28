@@ -66,7 +66,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Find some gifs!" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
                                 <rect key="frame" x="8" y="64" width="576" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Vi0-c3-goa"/>
@@ -144,6 +144,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="2rS-d7-Sni"/>
                         <barButtonItem key="rightBarButtonItem" title="Categories" id="Fsj-92-CjW">
                             <connections>
                                 <segue destination="V7T-g4-icn" kind="show" id="qdQ-kK-yEd"/>
@@ -182,9 +183,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="XYg-Tm-HS8" kind="show" id="to7-5U-0dd"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -192,7 +190,12 @@
                             <outlet property="delegate" destination="V7T-g4-icn" id="FJ4-qd-8hz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" id="sXU-Wo-StH"/>
+                    <navigationItem key="navigationItem" title="Categories" id="sXU-Wo-StH">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="cLo-eb-xy1"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="XYg-Tm-HS8" kind="show" identifier="CategorySegue" id="KrQ-FU-lu3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCF-vz-6zM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +204,7 @@
         <!--SubCategories-->
         <scene sceneID="OmT-oQ-1nX">
             <objects>
-                <tableViewController id="XYg-Tm-HS8" customClass="SubCategoriesTableViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SubCategoriesTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XYg-Tm-HS8" customClass="SubCategoriesTableViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3V7-uD-k3M">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,7 +230,9 @@
                             <outlet property="delegate" destination="XYg-Tm-HS8" id="jdI-lY-qx7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SubCategories" id="rqE-NO-lEV"/>
+                    <navigationItem key="navigationItem" title="SubCategories" id="rqE-NO-lEV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="vmq-fw-Bi1"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spA-2R-S8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
