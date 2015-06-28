@@ -14,9 +14,12 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var gifs = [Gif]()
     var searchString: String!
+    var navigationBarTitle: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = navigationBarTitle
 
         resultsTableView.rowHeight = UITableViewAutomaticDimension
         resultsTableView.estimatedRowHeight = 350

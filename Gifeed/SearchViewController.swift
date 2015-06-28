@@ -163,6 +163,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func segueToResultsViewController() {
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController")! as! ResultsViewController
         detailController.searchString = searchTextField.text
+        detailController.navigationBarTitle = searchTextField.text
         
         self.navigationController!.pushViewController(detailController, animated: true)
     }

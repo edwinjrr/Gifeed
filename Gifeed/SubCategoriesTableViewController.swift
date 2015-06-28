@@ -42,6 +42,7 @@ class SubCategoriesTableViewController: UITableViewController {
         let subCategory = subCategories[indexPath.row]
         
         detailController.searchString = subCategory.name
+        detailController.navigationBarTitle = subCategory.name
         
         self.navigationController!.pushViewController(detailController, animated: true)
     }
