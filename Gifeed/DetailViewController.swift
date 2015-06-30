@@ -22,18 +22,32 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         
-        //println(selectedGif.animatedImageURL)
-        
-        let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
+        if selectedGif.photoImage != nil {
+            let image = UIImage.animatedImageWithData(selectedGif.photoImage!)
             
-            if let data = imageData {
-                let image = UIImage.animatedImageWithData(data)
+            //Update the cell later, on the main thread
+            dispatch_async(dispatch_get_main_queue()) {
+                self.detailImageView.image = image
+                self.activityIndicator.stopAnimating()
+            }
+        }
+        else {
+        
+            let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
                 
-                //update the cell later, on the main thread
-                dispatch_async(dispatch_get_main_queue()) {
+                if let data = imageData {
+                    //Create the image
+                    let image = UIImage.animatedImageWithData(data)
                     
-                    self.detailImageView.image = image
-                    self.activityIndicator.stopAnimating()
+                    //Update the model, so that the information gets cashed
+                    self.selectedGif.photoImage = data
+                    
+                    //Update the cell later, on the main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        self.detailImageView.image = image
+                        self.activityIndicator.stopAnimating()
+                    }
                 }
             }
         }

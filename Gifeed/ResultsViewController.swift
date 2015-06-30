@@ -67,15 +67,17 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: Table view data source methods:
     
+    //TODO:---->Short it!
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gifs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ResultCell", forIndexPath: indexPath) as! ResultCell
-        
         let gif = gifs[indexPath.row]
+        var stillImage: UIImage!
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("ResultCell", forIndexPath: indexPath) as! ResultCell
         
         cell.loadingIndicator.startAnimating()
         cell.resultImageView.image = nil
@@ -88,29 +90,46 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             sourceStringFormatted = gif.imageSource.stringByReplacingOccurrencesOfString("http://", withString: "")
         }
         else {
-            sourceStringFormatted = "Nothing to see here..."
+            sourceStringFormatted = "We know nothing..."
         }
         
         var imageSizeFormatted = sizeNumberFormatting(gif.imageSize)
         
-        let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
+        if gif.stillPhotoImage != nil {
             
-            if let data = imageData {
-                let image = UIImage(data: data)
+            let image = UIImage.animatedImageWithData(gif.stillPhotoImage!)
+            stillImage = image
+            cell.loadingIndicator.stopAnimating()
+            cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
+            cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
+        }
+        else {
+        
+            let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
                 
-                // update the cell later, on the main thread
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.resultImageView.image = image
-                    cell.loadingIndicator.stopAnimating()
-                    cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
-                    cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
+                if let data = imageData {
+                    //Create the image
+                    let image = UIImage(data: data)
+                    
+                    //Update the model, so that the information gets cashed
+                    gif.stillPhotoImage = data
+                    
+                    // update the cell later, on the main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        cell.resultImageView.image = image
+                        cell.loadingIndicator.stopAnimating()
+                        cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
+                        cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
+                    }
                 }
             }
+            
+            // This is the custom property on this cell. It uses a property observer,
+            // any time its value is set it canceles the previous NSURLSessionTask.
+            cell.taskToCancelifCellIsReused = task
         }
         
-        // This is the custom property on this cell. It uses a property observer,
-        // any time its value is set it canceles the previous NSURLSessionTask.
-        cell.taskToCancelifCellIsReused = task
+        cell.resultImageView.image = stillImage
         
         return cell
     }

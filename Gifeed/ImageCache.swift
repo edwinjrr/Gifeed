@@ -14,24 +14,19 @@ class ImageCache {
     
     // MARK: - Retreiving images
     
-    func imageWithIdentifier(identifier: String?) -> UIImage? {
-        
-        // If the identifier is nil, or empty, return nil
-//        if identifier == nil || identifier! == "" {
-//            return nil
-//        }
+    func imageWithIdentifier(identifier: String?) -> NSData? {
         
         let path = pathForIdentifier(identifier!)
         var data: NSData?
         
         // First try the memory cache
-        if let image = inMemoryCache.objectForKey(path) as? UIImage {
+        if let image = inMemoryCache.objectForKey(path) as? NSData {
             return image
         }
         
         // Next Try the hard drive
         if let data = NSData(contentsOfFile: path) {
-            return UIImage(data: data)
+            return data
         }
         
         return nil
@@ -39,7 +34,7 @@ class ImageCache {
     
     // MARK: - Saving images
     
-    func storeImage(image: UIImage?, withIdentifier identifier: String) {
+    func storeImage(image: NSData?, withIdentifier identifier: String) {
         let path = pathForIdentifier(identifier)
         
         // If the image is nil, remove images from the cache
@@ -53,8 +48,7 @@ class ImageCache {
         inMemoryCache.setObject(image!, forKey: path)
         
         // And in documents directory
-        let data = UIImagePNGRepresentation(image!)
-        data.writeToFile(path, atomically: true)
+        image!.writeToFile(path, atomically: true)
     }
     
     // MARK: - Helper
