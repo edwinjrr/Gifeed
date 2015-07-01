@@ -71,12 +71,20 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     @IBAction func saveGif(sender: AnyObject) {
         
-//        let dictionary: [String: AnyObject] = [
-//        
-//        
-//         ]
-//        
-//        let gifToBeSaved = Gif(dictionary: <#[String : AnyObject]#>, insertIntoManagedObjectContext: sharedContext)
+        // The gif that was selected is from a different managed object context.
+        // We need to make a new gif. The easiest way to do that is to make a dictionary.
+        let dictionary: [String: AnyObject] = [
+            "id" : selectedGif.imageID,
+            "source" : selectedGif.imageSource,
+            "images" : ["original" : [
+                                "url": selectedGif.animatedImageURL,
+                                "size": selectedGif.imageSize],
+                        "original_still" : ["url": selectedGif.stillImageURL]
+            ]
+        ]
+        
+        // Now we create a new Gif, using the shared Context
+        let gifToBeSaved = Gif(dictionary: dictionary, insertIntoManagedObjectContext: sharedContext)
         
         saveContext()
     }
