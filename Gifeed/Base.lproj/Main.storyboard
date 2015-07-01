@@ -26,16 +26,40 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SavedGifCell" id="xjx-3I-YMY">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SavedGifCell" id="xjx-3I-YMY" customClass="SavedGifCell" customModule="Gifeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HoZ-dF-ht9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qPo-cv-oeK">
+                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="HoZ-dF-ht9" secondAttribute="bottom" constant="-8" id="U29-RH-76R"/>
+                                            <constraint firstItem="HoZ-dF-ht9" firstAttribute="top" secondItem="xjx-3I-YMY" secondAttribute="topMargin" constant="-8" id="heN-zf-Shq"/>
+                                            <constraint firstItem="HoZ-dF-ht9" firstAttribute="leading" secondItem="xjx-3I-YMY" secondAttribute="leadingMargin" constant="-8" id="nWE-js-r58"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="HoZ-dF-ht9" secondAttribute="trailing" constant="-8" id="oj0-Ya-aXC"/>
+                                            <constraint firstAttribute="centerX" secondItem="qPo-cv-oeK" secondAttribute="centerX" id="tFC-Kf-5Vg"/>
+                                            <constraint firstAttribute="centerY" secondItem="qPo-cv-oeK" secondAttribute="centerY" id="yAY-ly-Sc9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="HoZ-dF-ht9" id="UqA-2D-iQS"/>
+                                            <outlet property="loadingIndicator" destination="qPo-cv-oeK" id="Rhw-Nu-sHF"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UcY-VF-ap2" id="gKR-aT-Uig"/>
+                                    <outlet property="delegate" destination="UcY-VF-ap2" id="S0P-19-O1S"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,6 +73,9 @@
                     <navigationItem key="navigationItem" title="Saved Gifs" id="dak-AS-EIe">
                         <barButtonItem key="rightBarButtonItem" id="Pcl-30-0Si"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="savedGifsCollectionView" destination="nxe-SS-x8C" id="AzW-zn-nnB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIj-ej-WS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,7 +348,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iEg-F9-wZ7" firstAttribute="bottom" secondItem="YWI-UY-ZJr" secondAttribute="top" id="Cgs-4r-X9s"/>
                             <constraint firstItem="iEg-F9-wZ7" firstAttribute="top" secondItem="R4B-X7-D7v" secondAttribute="top" id="ZX6-Jz-4CN"/>
@@ -366,6 +393,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveGif:" destination="P30-rL-Cym" eventType="touchUpInside" id="nra-17-CIQ"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
                                 <rect key="frame" x="282" y="269" width="37" height="37"/>
@@ -391,6 +421,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="oJl-bb-w1x" id="FTE-17-ngj"/>
                         <outlet property="detailImageView" destination="dCF-9F-jWH" id="PP0-26-bsj"/>
+                        <outlet property="saveGifButton" destination="SEz-4i-jQe" id="aKn-Wq-weV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9l-PO-VH3" userLabel="First Responder" sceneMemberID="firstResponder"/>

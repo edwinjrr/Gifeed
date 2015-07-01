@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,6 +16,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     var gifs = [Gif]()
     var searchString: String!
     var navigationBarTitle: String!
+    
+    var temporaryContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,12 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
 
         resultsTableView.rowHeight = UITableViewAutomaticDimension
         resultsTableView.estimatedRowHeight = 350
+        
+        let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
+        
+        // Set the temporary context
+        temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        temporaryContext.persistentStoreCoordinator = sharedContext.persistentStoreCoordinator
         
     }
     
@@ -49,13 +58,15 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             else {
                 
-                if let results = results as [Gif]? {
+                if let results = results {
                     
                     if results.isEmpty {
                         println("Empty array") //<--- Setup an placeholder image here!
                     }
                     else {
-                        self.gifs = results
+                        
+                        self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
+                        
                         dispatch_async(dispatch_get_main_queue()) {
                             self.resultsTableView.reloadData()
                         }
@@ -97,7 +108,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if gif.stillPhotoImage != nil {
             
-            let image = UIImage.animatedImageWithData(gif.stillPhotoImage!)
+            let image = UIImage(data: gif.stillPhotoImage!)
             stillImage = image
             cell.loadingIndicator.stopAnimating()
             cell.sourceLabel.text = "Source: \(sourceStringFormatted)"

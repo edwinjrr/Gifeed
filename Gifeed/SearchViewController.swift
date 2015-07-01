@@ -7,20 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
-    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var trendingNowLabel: UILabel!
     
     var gifs = [Gif]()
     
     var tapRecognizer: UITapGestureRecognizer? = nil
     
+    var temporaryContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
+        
+        // Set the temporary context
+        temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        temporaryContext.persistentStoreCoordinator = sharedContext.persistentStoreCoordinator
         
         //Download the more trending Gifs from Giphy
         downloadTrendingGifs()
@@ -101,6 +109,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.navigationController!.pushViewController(detailController, animated: true)
     }
     
+    func gifsFromResults(results: [[String : AnyObject]]) -> [Gif] {
+        var gifs = [Gif]()
+        
+        for result in results {
+            gifs.append(Gif(dictionary: result, insertIntoManagedObjectContext: self.temporaryContext))
+        }
+        
+        return gifs
+    }
+    
     func downloadTrendingGifs() {
         
         Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
@@ -110,13 +128,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
             else {
                 
-                if let results = results as [Gif]? {
+                if let results = results {
                     
                     if results.isEmpty {
                         println("Empty array") //<--- Setup an placeholder image!
                     }
                     else {
-                        self.gifs = results
+                    
+                        self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
+                        
                         dispatch_async(dispatch_get_main_queue()) {
                             self.trendingGifsCollectionView.reloadData()
                         }

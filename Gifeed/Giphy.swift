@@ -20,7 +20,7 @@ class Giphy {
     
     let apiKey = "dc6zaTOxFJmzC" //Public API for development
     
-    func getGifFromGiphyBySearch(searchString: String, completionHandler: (results: [Gif]?, error: String?) -> Void) {
+    func getGifFromGiphyBySearch(searchString: String, completionHandler: (results: [[String:AnyObject]]?, error: String?) -> Void) {
         
         let methodParameters = [
             "q": searchString,
@@ -46,9 +46,9 @@ class Giphy {
                 /* Using the data! */
                 if let imagesArray = parsedResult.valueForKey("data") as? [[String:AnyObject]] {
                     
-                    var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
+                    //var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
                     
-                    completionHandler(results: gifs, error: nil)
+                    completionHandler(results: imagesArray, error: nil)
                     
                 } else {
                     
@@ -61,7 +61,7 @@ class Giphy {
     
     }
     
-    func getTrendingGifFromGiphy(completionHandler: (results: [Gif]?, error: String?) -> Void) {
+    func getTrendingGifFromGiphy(completionHandler: (results: [[String:AnyObject]]?, error: String?) -> Void) {
         
         let methodParameters = [
             "api_key": apiKey,
@@ -86,9 +86,9 @@ class Giphy {
                 /* Using the data! */
                 if let imagesArray = parsedResult.valueForKey("data") as? [[String:AnyObject]] {
                     
-                    var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
+                    //var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
                     
-                    completionHandler(results: gifs, error: nil)
+                    completionHandler(results: imagesArray, error: nil)
                     
                 } else {
                     

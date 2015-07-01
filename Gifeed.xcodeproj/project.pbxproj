@@ -27,6 +27,7 @@
 		212B4A551B377074008BF6DC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212B4A541B377074008BF6DC /* Reachability.swift */; };
 		217092771B40781400FFE568 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217092761B40781400FFE568 /* Category.swift */; };
 		217092791B40840800FFE568 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217092781B40840800FFE568 /* SubCategory.swift */; };
+		21CBE0351B436F2200FF761E /* SavedGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CBE0341B436F2200FF761E /* SavedGifCell.swift */; };
 		21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA60241B38E24100334FFF /* TrendingGifCell.swift */; };
 		21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5F0461B3F1C8000382804 /* ResultCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		212B4A541B377074008BF6DC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		217092761B40781400FFE568 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		217092781B40840800FFE568 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
+		21CBE0341B436F2200FF761E /* SavedGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifCell.swift; sourceTree = "<group>"; };
 		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
 		21E5F0461B3F1C8000382804 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,13 +155,13 @@
 		212B4A411B37308B008BF6DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				212B4A4E1B37509F008BF6DC /* Giphy.swift */,
 				212B4A501B3750C8008BF6DC /* Gif.swift */,
-				212B4A521B3750D7008BF6DC /* ImageCache.swift */,
-				212B4A541B377074008BF6DC /* Reachability.swift */,
-				212503EA1B3B7FBE0081C48E /* UIImageGif.swift */,
 				217092761B40781400FFE568 /* Category.swift */,
 				217092781B40840800FFE568 /* SubCategory.swift */,
+				212B4A4E1B37509F008BF6DC /* Giphy.swift */,
+				212B4A521B3750D7008BF6DC /* ImageCache.swift */,
+				212503EA1B3B7FBE0081C48E /* UIImageGif.swift */,
+				212B4A541B377074008BF6DC /* Reachability.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 			children = (
 				21DA60241B38E24100334FFF /* TrendingGifCell.swift */,
 				21E5F0461B3F1C8000382804 /* ResultCell.swift */,
+				21CBE0341B436F2200FF761E /* SavedGifCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				212B4A221B372D42008BF6DC /* SearchViewController.swift in Sources */,
 				212B4A401B373082008BF6DC /* CoreDataStackManager.swift in Sources */,
 				212503EB1B3B7FBE0081C48E /* UIImageGif.swift in Sources */,
+				21CBE0351B436F2200FF761E /* SavedGifCell.swift in Sources */,
 				217092771B40781400FFE568 /* Category.swift in Sources */,
 				212B4A471B37495D008BF6DC /* SubCategoriesTableViewController.swift in Sources */,
 				212B4A511B3750C8008BF6DC /* Gif.swift in Sources */,
