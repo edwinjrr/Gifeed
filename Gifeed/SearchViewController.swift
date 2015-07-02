@@ -109,16 +109,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.navigationController!.pushViewController(detailController, animated: true)
     }
     
-    func gifsFromResults(results: [[String : AnyObject]]) -> [Gif] {
-        var gifs = [Gif]()
-        
-        for result in results {
-            gifs.append(Gif(dictionary: result, insertIntoManagedObjectContext: self.temporaryContext))
-        }
-        
-        return gifs
-    }
-    
     func downloadTrendingGifs() {
         
         Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in

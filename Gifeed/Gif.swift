@@ -13,14 +13,6 @@ import CoreData
 
 class Gif: NSManagedObject {
     
-//    struct Keys {
-//        static let imageID = "id"
-//        static let animatedImageURL = "profile_path"
-//        static let stillImageURL = "movies"
-//        static let imageSize = "size"
-//        static let imageSource = "source"
-//    }
-    
     @NSManaged var imageID: String
     @NSManaged var animatedImageURL: String
     @NSManaged var stillImageURL: String

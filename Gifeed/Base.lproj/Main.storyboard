@@ -20,7 +20,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nxe-SS-x8C">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7NM-0d-n3Q">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="106" height="99"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -30,27 +30,40 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HoZ-dF-ht9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="99"/>
                                                 </imageView>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qPo-cv-oeK">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                    <rect key="frame" x="43" y="40" width="20" height="20"/>
                                                 </activityIndicatorView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv0-A3-0mz">
+                                                    <rect key="frame" x="37" y="34" width="33" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Oul-VW-p0k"/>
+                                                        <constraint firstAttribute="width" constant="33" id="gwS-dV-Jay"/>
+                                                    </constraints>
+                                                    <state key="normal" image="delete_icon">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="Dv0-A3-0mz" secondAttribute="centerY" id="Mio-QS-o40"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="HoZ-dF-ht9" secondAttribute="bottom" constant="-8" id="U29-RH-76R"/>
                                             <constraint firstItem="HoZ-dF-ht9" firstAttribute="top" secondItem="xjx-3I-YMY" secondAttribute="topMargin" constant="-8" id="heN-zf-Shq"/>
                                             <constraint firstItem="HoZ-dF-ht9" firstAttribute="leading" secondItem="xjx-3I-YMY" secondAttribute="leadingMargin" constant="-8" id="nWE-js-r58"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="HoZ-dF-ht9" secondAttribute="trailing" constant="-8" id="oj0-Ya-aXC"/>
+                                            <constraint firstAttribute="centerX" secondItem="Dv0-A3-0mz" secondAttribute="centerX" id="olZ-ix-QTF"/>
                                             <constraint firstAttribute="centerX" secondItem="qPo-cv-oeK" secondAttribute="centerX" id="tFC-Kf-5Vg"/>
                                             <constraint firstAttribute="centerY" secondItem="qPo-cv-oeK" secondAttribute="centerY" id="yAY-ly-Sc9"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="deleteButton" destination="Dv0-A3-0mz" id="A7n-7i-fzc"/>
                                             <outlet property="imageView" destination="HoZ-dF-ht9" id="UqA-2D-iQS"/>
                                             <outlet property="loadingIndicator" destination="qPo-cv-oeK" id="Rhw-Nu-sHF"/>
                                         </connections>
@@ -71,9 +84,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Saved Gifs" id="dak-AS-EIe">
-                        <barButtonItem key="rightBarButtonItem" id="Pcl-30-0Si"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Jpp-49-ssD">
+                            <connections>
+                                <action selector="editMode:" destination="UcY-VF-ap2" id="hpu-nO-PIT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="Jpp-49-ssD" id="Es4-r8-6ta"/>
                         <outlet property="savedGifsCollectionView" destination="nxe-SS-x8C" id="AzW-zn-nnB"/>
                     </connections>
                 </viewController>
@@ -382,16 +400,21 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="447"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
                                 <rect key="frame" x="0.0" y="511" width="600" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GLN-Ce-AJz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Save">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </state>
                                 <connections>
                                     <action selector="saveGif:" destination="P30-rL-Cym" eventType="touchUpInside" id="nra-17-CIQ"/>
@@ -401,7 +424,7 @@
                                 <rect key="frame" x="282" y="269" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="dCF-9F-jWH" firstAttribute="centerY" secondItem="oJl-bb-w1x" secondAttribute="centerY" id="Cvj-Fo-eMI"/>
                             <constraint firstItem="6Ra-65-gKZ" firstAttribute="top" secondItem="SEz-4i-jQe" secondAttribute="bottom" id="Mq8-xq-2SZ"/>
@@ -486,4 +509,7 @@
             <point key="canvasLocation" x="1058" y="528"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="delete_icon" width="240" height="234"/>
+    </resources>
 </document>

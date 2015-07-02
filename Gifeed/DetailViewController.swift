@@ -17,6 +17,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     var selectedGif: Gif!
     var imageIdentifier: String!
+    var itemSaved = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         showAnimatedGif(selectedGif)
+        
+        if itemSaved {
+            saveGifButton.hidden = true
+        }
     }
     
     // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
