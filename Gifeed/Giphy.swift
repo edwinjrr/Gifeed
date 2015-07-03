@@ -164,5 +164,6 @@ class Giphy {
     
     struct Caches {
         static let imageCache = ImageCache()
+        static let resultsCache = ResultsCache()
     }
 }

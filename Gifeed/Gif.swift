@@ -73,4 +73,15 @@ class Gif: NSManagedObject {
             Giphy.Caches.imageCache.storeImage(newValue, withIdentifier: "\(imageID)_still")
         }
     }
+    
+    var cacheStillPhotoImage: NSData? {
+        
+        get {
+            return Giphy.Caches.resultsCache.imageWithIdentifier("\(imageID)_still")
+        }
+        
+        set {
+            Giphy.Caches.resultsCache.storeImage(newValue, withIdentifier: "\(imageID)_still")
+        }
+    }
 }

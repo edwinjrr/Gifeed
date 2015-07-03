@@ -17,6 +17,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     var searchString: String!
     var navigationBarTitle: String!
     
+    var temporaryFiles = [String]()
+    
     var temporaryContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
@@ -106,9 +108,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         var imageSizeFormatted = sizeNumberFormatting(gif.imageSize)
         
-        if gif.stillPhotoImage != nil {
+        if gif.cacheStillPhotoImage != nil {
             
-            let image = UIImage(data: gif.stillPhotoImage!)
+            let image = UIImage(data: gif.cacheStillPhotoImage!)
             stillImage = image
             cell.loadingIndicator.stopAnimating()
             cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
@@ -123,7 +125,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                     let image = UIImage(data: data)
                     
                     //Update the model, so that the information gets cashed
-                    //gif.stillPhotoImage = data
+                    gif.cacheStillPhotoImage = data
                     
                     // update the cell later, on the main thread
                     dispatch_async(dispatch_get_main_queue()) {

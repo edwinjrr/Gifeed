@@ -29,6 +29,7 @@
 		217092791B40840800FFE568 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217092781B40840800FFE568 /* SubCategory.swift */; };
 		21CBE0351B436F2200FF761E /* SavedGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CBE0341B436F2200FF761E /* SavedGifCell.swift */; };
 		21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA60241B38E24100334FFF /* TrendingGifCell.swift */; };
+		21E47ACC1B46271D00ADE40F /* ResultsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E47ACB1B46271D00ADE40F /* ResultsCache.swift */; };
 		21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5F0461B3F1C8000382804 /* ResultCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		217092781B40840800FFE568 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		21CBE0341B436F2200FF761E /* SavedGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifCell.swift; sourceTree = "<group>"; };
 		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
+		21E47ACB1B46271D00ADE40F /* ResultsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsCache.swift; sourceTree = "<group>"; };
 		21E5F0461B3F1C8000382804 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 				212B4A521B3750D7008BF6DC /* ImageCache.swift */,
 				212503EA1B3B7FBE0081C48E /* UIImageGif.swift */,
 				212B4A541B377074008BF6DC /* Reachability.swift */,
+				21E47ACB1B46271D00ADE40F /* ResultsCache.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				212B4A451B37492C008BF6DC /* CategoriesTableViewController.swift in Sources */,
 				21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */,
 				212B4A491B374B00008BF6DC /* SavedGifsViewController.swift in Sources */,
+				21E47ACC1B46271D00ADE40F /* ResultsCache.swift in Sources */,
 				212B4A4B1B374BA6008BF6DC /* ResultsViewController.swift in Sources */,
 				21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */,
 				212B4A4F1B37509F008BF6DC /* Giphy.swift in Sources */,

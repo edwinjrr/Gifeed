@@ -40,15 +40,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         tapRecognizer?.numberOfTapsRequired = 1
         
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
+        
     // Layout the collection view
     
     override func viewDidLayoutSubviews() {
