@@ -123,7 +123,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                     let image = UIImage(data: data)
                     
                     //Update the model, so that the information gets cashed
-                    gif.stillPhotoImage = data
+                    //gif.stillPhotoImage = data
                     
                     // update the cell later, on the main thread
                     dispatch_async(dispatch_get_main_queue()) {

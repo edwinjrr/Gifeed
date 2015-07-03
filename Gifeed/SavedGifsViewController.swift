@@ -23,6 +23,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
     
     override func viewWillAppear(animated: Bool) {
         gifs = fetchAllGifs()
+        self.savedGifsCollectionView.reloadData()
     }
     
     // Layout the collection view
@@ -86,7 +87,18 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
         cell.imageView.image = nil
         
         // Add an action function to the delete button
-        //cell.deleteButton.addTarget(self, action: "deleteGif:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.deleteButton.addTarget(self, action: "deleteButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //START
+        if editModeEnabled {
+            cell.deleteButton.hidden = false // Show all of the delete buttons
+            cell.imageView.alpha = 0.50
+        }
+        else {
+            cell.deleteButton.hidden = true // Show all of the delete buttons
+            cell.imageView.alpha = 1
+        }
+        //END
         
         if gif.stillPhotoImage != nil {
             
@@ -129,7 +141,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
         else {
             let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")! as! DetailViewController
             detailController.selectedGif = self.gifs[indexPath.item]
-            detailController.itemSaved = true
+            //detailController.itemSaved = true
             
             self.navigationController!.pushViewController(detailController, animated: true)
         }
@@ -170,6 +182,13 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
         NSCache().removeObjectForKey(path)
     }
     
+    func deleteButtonPressed(button: UIButton) {
+        let touchPoint = self.savedGifsCollectionView.convertPoint(CGPoint.zeroPoint, fromView: button)
+        if let indexPath = self.savedGifsCollectionView.indexPathForItemAtPoint(touchPoint) {
+            deleteGIF(self.savedGifsCollectionView, indexPath: indexPath)
+        }
+    }
+    
     @IBAction func editMode(sender: AnyObject) {  //TODO: Test with non-visible cells.
         if !editModeEnabled {
             
@@ -178,13 +197,15 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
             editButton.style = .Done
             editModeEnabled = true
             
+            self.savedGifsCollectionView.reloadData()
+            
             // Loop through the collectionView's visible cells
-            for item in self.savedGifsCollectionView.visibleCells() {
-                var indexPath = self.savedGifsCollectionView.indexPathForCell(item as! SavedGifCell)!
-                var cell = self.savedGifsCollectionView.cellForItemAtIndexPath(indexPath) as! SavedGifCell!
-                cell.deleteButton.hidden = false // Show all of the delete buttons
-                cell.imageView.alpha = 0.50
-            }
+//            for item in self.savedGifsCollectionView.visibleCells() {
+//                var indexPath = self.savedGifsCollectionView.indexPathForCell(item as! SavedGifCell)!
+//                var cell = self.savedGifsCollectionView.cellForItemAtIndexPath(indexPath) as! SavedGifCell!
+//                cell.deleteButton.hidden = false // Show all of the delete buttons
+//                cell.imageView.alpha = 0.50
+//            }
         }
         else {
             //Take the collection view out of edit mode
@@ -192,13 +213,15 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
             editButton.style = .Plain
             editModeEnabled = false
             
+            self.savedGifsCollectionView.reloadData()
+            
             // Loop through the collectionView's visible cells
-            for item in self.savedGifsCollectionView.visibleCells() {
-                var indexPath = self.savedGifsCollectionView.indexPathForCell(item as! SavedGifCell)!
-                var cell = self.savedGifsCollectionView.cellForItemAtIndexPath(indexPath) as! SavedGifCell!
-                cell.deleteButton.hidden = true // Show all of the delete buttons
-                cell.imageView.alpha = 1
-            }
+//            for item in self.savedGifsCollectionView.visibleCells() {
+//                var indexPath = self.savedGifsCollectionView.indexPathForCell(item as! SavedGifCell)!
+//                var cell = self.savedGifsCollectionView.cellForItemAtIndexPath(indexPath) as! SavedGifCell!
+//                cell.deleteButton.hidden = true // Show all of the delete buttons
+//                cell.imageView.alpha = 1
+//            }
         }
     }
 }

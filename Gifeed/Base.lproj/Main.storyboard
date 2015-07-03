@@ -42,8 +42,8 @@
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv0-A3-0mz">
                                                     <rect key="frame" x="37" y="34" width="33" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="Oul-VW-p0k"/>
-                                                        <constraint firstAttribute="width" constant="33" id="gwS-dV-Jay"/>
+                                                        <constraint firstAttribute="height" constant="32" id="CMj-kd-g5V"/>
+                                                        <constraint firstAttribute="width" constant="33" id="RZ7-RO-zQV"/>
                                                     </constraints>
                                                     <state key="normal" image="delete_icon">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,12 +53,12 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="Dv0-A3-0mz" secondAttribute="centerY" id="Mio-QS-o40"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="HoZ-dF-ht9" secondAttribute="bottom" constant="-8" id="U29-RH-76R"/>
                                             <constraint firstItem="HoZ-dF-ht9" firstAttribute="top" secondItem="xjx-3I-YMY" secondAttribute="topMargin" constant="-8" id="heN-zf-Shq"/>
                                             <constraint firstItem="HoZ-dF-ht9" firstAttribute="leading" secondItem="xjx-3I-YMY" secondAttribute="leadingMargin" constant="-8" id="nWE-js-r58"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="HoZ-dF-ht9" secondAttribute="trailing" constant="-8" id="oj0-Ya-aXC"/>
-                                            <constraint firstAttribute="centerX" secondItem="Dv0-A3-0mz" secondAttribute="centerX" id="olZ-ix-QTF"/>
+                                            <constraint firstAttribute="centerX" secondItem="Dv0-A3-0mz" secondAttribute="centerX" constant="-0.5" id="qhm-dQ-MA1"/>
+                                            <constraint firstAttribute="centerY" secondItem="Dv0-A3-0mz" secondAttribute="centerY" constant="-0.5" id="rCS-JB-cAX"/>
                                             <constraint firstAttribute="centerX" secondItem="qPo-cv-oeK" secondAttribute="centerX" id="tFC-Kf-5Vg"/>
                                             <constraint firstAttribute="centerY" secondItem="qPo-cv-oeK" secondAttribute="centerY" id="yAY-ly-Sc9"/>
                                         </constraints>
@@ -189,7 +189,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="2rS-d7-Sni"/>
+                        <barButtonItem key="backBarButtonItem" title="  " id="2rS-d7-Sni"/>
                         <barButtonItem key="rightBarButtonItem" title="Categories" id="Fsj-92-CjW">
                             <connections>
                                 <segue destination="V7T-g4-icn" kind="show" id="qdQ-kK-yEd"/>
@@ -236,7 +236,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categories" id="sXU-Wo-StH">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="cLo-eb-xy1"/>
+                        <barButtonItem key="backBarButtonItem" title="  " id="cLo-eb-xy1"/>
                     </navigationItem>
                     <connections>
                         <segue destination="XYg-Tm-HS8" kind="show" identifier="CategorySegue" id="KrQ-FU-lu3"/>
@@ -276,7 +276,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SubCategories" id="rqE-NO-lEV">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="vmq-fw-Bi1"/>
+                        <barButtonItem key="backBarButtonItem" title="  " id="vmq-fw-Bi1"/>
                     </navigationItem>
                     <connections>
                         <segue destination="ZKg-62-juj" kind="show" identifier="ResultsSegue" id="JEG-o6-5Rz"/>

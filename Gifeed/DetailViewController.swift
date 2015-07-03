@@ -17,7 +17,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     var selectedGif: Gif!
     var imageIdentifier: String!
-    var itemSaved = false
+    var downloadedData: NSData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +25,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         showAnimatedGif(selectedGif)
-        
-        if itemSaved {
-            saveGifButton.hidden = true
-        }
     }
     
     // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
@@ -44,6 +40,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     func showAnimatedGif(gif: Gif) {
         
         if selectedGif.photoImage != nil {
+            
+            //Hide the save button
+            responseToSavedItem(true)
+            
             let image = UIImage.animatedImageWithData(selectedGif.photoImage!)
             
             //Update the cell later, on the main thread
@@ -61,7 +61,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                     let image = UIImage.animatedImageWithData(data)
                     
                     //Update the model, so that the information gets cashed
-                    self.selectedGif.photoImage = data
+                    //self.selectedGif.photoImage = data
+                    //Store the data in case it gets saved
+                    self.downloadedData = data
                     
                     //Update the cell later, on the main thread
                     dispatch_async(dispatch_get_main_queue()) {
@@ -75,6 +77,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func saveGif(sender: AnyObject) {
+        
+        responseToSavedItem(true)
+        self.selectedGif.photoImage = downloadedData
         
         // The gif that was selected is from a different managed object context.
         // We need to make a new gif. The easiest way to do that is to make a dictionary.
@@ -92,5 +97,11 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let gifToBeSaved = Gif(dictionary: dictionary, insertIntoManagedObjectContext: sharedContext)
         
         saveContext()
+    }
+    
+    func responseToSavedItem(status: Bool) {
+        if status {
+            saveGifButton.hidden = true
+        }
     }
 }
