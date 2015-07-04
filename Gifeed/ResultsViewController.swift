@@ -12,10 +12,12 @@ import CoreData
 class ResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var resultsTableView: UITableView!
+    @IBOutlet weak var notFoundImageView: UIImageView!
     
     var gifs = [Gif]()
     var searchString: String!
     var navigationBarTitle: String!
+    var notFoundImage: UIImage!
     
     var temporaryFiles = [String]()
     
@@ -35,6 +37,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         temporaryContext.persistentStoreCoordinator = sharedContext.persistentStoreCoordinator
         
+        //Prepare the placeholder image in case no gifs where found.
+        var notFoundImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("infinite", withExtension: "gif")!)
+        notFoundImage = UIImage.animatedImageWithData(notFoundImageData!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,6 +50,10 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         else {
             println("Empty searchString. Show placeholder")
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.notFoundImageView.hidden = true
     }
     
     //MARK: Giphy API search method:
@@ -63,7 +72,11 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                 if let results = results {
                     
                     if results.isEmpty {
-                        println("Empty array") //<--- Setup an placeholder image here!
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.notFoundImageView.hidden = false
+                            self.notFoundImageView.image = self.notFoundImage
+                        }
                     }
                     else {
                         

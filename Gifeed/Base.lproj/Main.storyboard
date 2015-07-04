@@ -365,17 +365,25 @@
                                     <outlet property="delegate" destination="ZKg-62-juj" id="iC4-vW-ICR"/>
                                 </connections>
                             </tableView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Mq-tb-TZA">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iEg-F9-wZ7" firstAttribute="bottom" secondItem="YWI-UY-ZJr" secondAttribute="top" id="Cgs-4r-X9s"/>
+                            <constraint firstItem="3Mq-tb-TZA" firstAttribute="leading" secondItem="R4B-X7-D7v" secondAttribute="leadingMargin" constant="-16" id="RjJ-1x-EIy"/>
                             <constraint firstItem="iEg-F9-wZ7" firstAttribute="top" secondItem="R4B-X7-D7v" secondAttribute="top" id="ZX6-Jz-4CN"/>
                             <constraint firstItem="iEg-F9-wZ7" firstAttribute="leading" secondItem="R4B-X7-D7v" secondAttribute="leading" id="Zeb-M1-MAD"/>
+                            <constraint firstItem="3Mq-tb-TZA" firstAttribute="top" secondItem="AYV-Mu-cg6" secondAttribute="bottom" id="cE5-oP-UbC"/>
+                            <constraint firstItem="YWI-UY-ZJr" firstAttribute="top" secondItem="3Mq-tb-TZA" secondAttribute="bottom" id="f2C-oC-EVB"/>
                             <constraint firstAttribute="trailing" secondItem="iEg-F9-wZ7" secondAttribute="trailing" id="s61-d7-wx8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Mq-tb-TZA" secondAttribute="trailing" constant="-16" id="uc3-qB-Nja"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="fRe-k0-fZo"/>
                     <connections>
+                        <outlet property="notFoundImageView" destination="3Mq-tb-TZA" id="0ya-Nb-Xgg"/>
                         <outlet property="resultsTableView" destination="iEg-F9-wZ7" id="uvK-9B-NDy"/>
                         <segue destination="P30-rL-Cym" kind="show" identifier="DetailViewSegue" id="Eap-MK-f5Q"/>
                     </connections>

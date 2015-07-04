@@ -59,12 +59,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             let image = UIImage.animatedImageWithData(selectedGif.photoImage!)
             
             self.imageData = selectedGif.photoImage
-            self.shareButton.enabled = true
+           
             
             //Update the cell later, on the main thread
             dispatch_async(dispatch_get_main_queue()) {
                 self.detailImageView.image = image
                 self.activityIndicator.stopAnimating()
+                self.shareButton.enabled = true
             }
         }
         else {
@@ -76,13 +77,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                     let image = UIImage.animatedImageWithData(data)
                     
                     self.imageData = data
-                    self.shareButton.enabled = true
                     
                     //Update the cell later, on the main thread
                     dispatch_async(dispatch_get_main_queue()) {
                         
                         self.detailImageView.image = image
                         self.activityIndicator.stopAnimating()
+                        self.shareButton.enabled = true
                     }
                 }
             }
