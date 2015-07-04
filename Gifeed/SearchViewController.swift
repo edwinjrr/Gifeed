@@ -44,7 +44,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         refreshControl.tintColor = UIColor.whiteColor()
         trendingGifsCollectionView.addSubview(refreshControl)
         
-        //Prepare the gif image for the search button.
+        //Prepare the animated gif image for the search button.
         var searchImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("search", withExtension: "gif")!)
         searchImage = UIImage.animatedImageWithData(searchImageData!)
         searchButton.setImage(searchImage, forState: UIControlState.Normal)

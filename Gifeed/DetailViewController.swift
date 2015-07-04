@@ -107,7 +107,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     func saveImage() {
         
         //Hide the save button
-        hideSaveButton(true)
+        self.hideSaveButton(true)
         
         //Update the model, so that the information gets save inside documents directory
         self.selectedGif.photoImage = imageData

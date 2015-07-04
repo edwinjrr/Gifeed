@@ -4,13 +4,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="SFPixelate.ttf">
-            <string>SFPixelate</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
-        <!--Saved Gifs-->
+        <!--SAVED GIFS-->
         <scene sceneID="5jF-Tn-mDh">
             <objects>
                 <viewController id="UcY-VF-ap2" customClass="SavedGifsViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,8 +83,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="nxe-SS-x8C" secondAttribute="trailing" constant="-16" id="nQX-js-O2g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Saved Gifs" id="dak-AS-EIe">
+                    <navigationItem key="navigationItem" title="SAVED GIFS" id="dak-AS-EIe">
+                        <barButtonItem key="backBarButtonItem" title="   " id="Ucj-ZN-Y9g"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Jpp-49-ssD">
+                            <color key="tintColor" red="0.69320518090000005" green="0.17542146380000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="editMode:" destination="UcY-VF-ap2" id="hpu-nO-PIT"/>
                             </connections>
@@ -104,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="1758" y="528"/>
         </scene>
-        <!--Gifeed-->
+        <!--GIFEED-->
         <scene sceneID="7iU-BD-aja">
             <objects>
                 <viewController id="9Y7-0S-ugd" customClass="SearchViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,9 +110,31 @@
                         <viewControllerLayoutGuide type="bottom" id="0bI-lM-81W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="asw-Fj-GIH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
+                                <rect key="frame" x="8" y="64" width="552" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Vi0-c3-goa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-N4-aqD">
+                                <rect key="frame" x="559" y="64" width="42" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="guO-FH-c7a"/>
+                                    <constraint firstAttribute="height" constant="40" id="xdh-Wf-OCP"/>
+                                </constraints>
+                                <state key="normal" image="Search_gray">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButton:" destination="9Y7-0S-ugd" eventType="touchUpInside" id="PDX-gr-UH9"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XgV-cI-RXU">
                                 <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Io0-yA-1M5">
@@ -160,28 +179,6 @@
                                     <outlet property="delegate" destination="9Y7-0S-ugd" id="JDK-8b-Nn6"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
-                                <rect key="frame" x="8" y="64" width="552" height="40"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Vi0-c3-goa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFPixelate" family="SF Pixelate" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-N4-aqD">
-                                <rect key="frame" x="559" y="64" width="42" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="guO-FH-c7a"/>
-                                    <constraint firstAttribute="height" constant="40" id="xdh-Wf-OCP"/>
-                                </constraints>
-                                <state key="normal" image="Search_gray">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="searchButton:" destination="9Y7-0S-ugd" eventType="touchUpInside" id="PDX-gr-UH9"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -196,9 +193,10 @@
                             <constraint firstItem="N9S-N4-aqD" firstAttribute="leading" secondItem="bfE-Xu-6H3" secondAttribute="trailing" constant="-1" id="n4M-Tj-2oM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
+                    <navigationItem key="navigationItem" title="GIFEED" id="sRy-ta-pq4">
                         <barButtonItem key="backBarButtonItem" title="  " id="2rS-d7-Sni"/>
                         <barButtonItem key="rightBarButtonItem" title="Categories" id="Fsj-92-CjW">
+                            <color key="tintColor" red="0.69320518090000005" green="0.17542146380000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="V7T-g4-icn" kind="show" id="qdQ-kK-yEd"/>
                             </connections>
@@ -214,28 +212,30 @@
             </objects>
             <point key="canvasLocation" x="1758" y="-134"/>
         </scene>
-        <!--Categories-->
+        <!--CATEGORIES-->
         <scene sceneID="Y3l-v8-7pG">
             <objects>
                 <tableViewController id="V7T-g4-icn" customClass="CategoriesTableViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0PU-Tx-YaI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0PU-Tx-YaI">
+                        <rect key="frame" x="0.0" y="94" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CategoryCell" textLabel="cDf-e5-dVq" style="IBUITableViewCellStyleDefault" id="lU8-Xu-hzu">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CategoryCell" textLabel="wne-jY-S3h" rowHeight="44" style="IBUITableViewCellStyleDefault" id="lU8-Xu-hzu" customClass="CategoryCell" customModule="Gifeed" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lU8-Xu-hzu" id="EAG-DO-Q89">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cDf-e5-dVq">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wne-jY-S3h">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -243,7 +243,7 @@
                             <outlet property="delegate" destination="V7T-g4-icn" id="FJ4-qd-8hz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" id="sXU-Wo-StH">
+                    <navigationItem key="navigationItem" title="CATEGORIES" id="sXU-Wo-StH">
                         <barButtonItem key="backBarButtonItem" title="  " id="cLo-eb-xy1"/>
                     </navigationItem>
                     <connections>
@@ -254,14 +254,15 @@
             </objects>
             <point key="canvasLocation" x="2477" y="-222"/>
         </scene>
-        <!--SubCategories-->
+        <!--SUBCATEGORIES-->
         <scene sceneID="OmT-oQ-1nX">
             <objects>
                 <tableViewController storyboardIdentifier="SubCategoriesTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XYg-Tm-HS8" customClass="SubCategoriesTableViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3V7-uD-k3M">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3V7-uD-k3M">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubCategoryCell" textLabel="Tly-EG-kag" style="IBUITableViewCellStyleDefault" id="1Zy-D3-bCf">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -270,12 +271,13 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tly-EG-kag">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -283,7 +285,7 @@
                             <outlet property="delegate" destination="XYg-Tm-HS8" id="jdI-lY-qx7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SubCategories" id="rqE-NO-lEV">
+                    <navigationItem key="navigationItem" title="SUBCATEGORIES" id="rqE-NO-lEV">
                         <barButtonItem key="backBarButtonItem" title="  " id="vmq-fw-Bi1"/>
                     </navigationItem>
                     <connections>
@@ -294,7 +296,7 @@
             </objects>
             <point key="canvasLocation" x="3186" y="-222"/>
         </scene>
-        <!--Results-->
+        <!--RESULTS-->
         <scene sceneID="OA2-6h-YxV">
             <objects>
                 <viewController storyboardIdentifier="ResultsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZKg-62-juj" customClass="ResultsViewController" customModule="Gifeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -303,7 +305,7 @@
                         <viewControllerLayoutGuide type="bottom" id="YWI-UY-ZJr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R4B-X7-D7v">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iEg-F9-wZ7">
@@ -389,7 +391,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="3Mq-tb-TZA" secondAttribute="trailing" constant="-16" id="uc3-qB-Nja"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Results" id="fRe-k0-fZo"/>
+                    <navigationItem key="navigationItem" title="RESULTS" id="fRe-k0-fZo">
+                        <barButtonItem key="backBarButtonItem" title="  " id="nbf-eC-5xH"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="notFoundImageView" destination="3Mq-tb-TZA" id="0ya-Nb-Xgg"/>
                         <outlet property="resultsTableView" destination="iEg-F9-wZ7" id="uvK-9B-NDy"/>
@@ -409,36 +413,30 @@
                         <viewControllerLayoutGuide type="bottom" id="6Ra-65-gKZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ipm-FQ-hiD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-9F-jWH">
-                                <rect key="frame" x="0.0" y="64" width="600" height="447"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="442"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
-                                <rect key="frame" x="0.0" y="511" width="600" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
+                                <rect key="frame" x="0.0" y="506" width="600" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="GLN-Ce-AJz"/>
+                                    <constraint firstAttribute="height" constant="45" id="GLN-Ce-AJz"/>
                                 </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Save">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="18" name="HelveticaNeue"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <state key="normal" title="Save it!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchUpInside" id="oY8-7U-PWC"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
-                                <rect key="frame" x="282" y="269" width="37" height="37"/>
+                                <rect key="frame" x="282" y="266" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -478,7 +476,7 @@
             <objects>
                 <tabBarController id="dhH-8q-Qj2" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="eIs-dS-MkA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="eIs-dS-MkA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -498,7 +496,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kUt-9A-LOs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="FcW-FK-TDr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VAw-gt-wsK">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="VAw-gt-wsK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -517,7 +517,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BUg-Ms-rmN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="5RZ-sc-dgI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZ3-Je-MVC">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="eZ3-Je-MVC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -535,4 +537,5 @@
         <image name="Search_gray" width="40" height="40"/>
         <image name="delete_icon" width="240" height="234"/>
     </resources>
+    <color key="tintColor" red="0.69320518092105265" green="0.17542146381578946" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
