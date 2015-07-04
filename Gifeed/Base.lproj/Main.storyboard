@@ -399,6 +399,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-9F-jWH">
                                 <rect key="frame" x="0.0" y="64" width="600" height="447"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
                                 <rect key="frame" x="0.0" y="511" width="600" height="40"/>
@@ -417,7 +418,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="saveGif:" destination="P30-rL-Cym" eventType="touchUpInside" id="nra-17-CIQ"/>
+                                    <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchUpInside" id="oY8-7U-PWC"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
@@ -439,12 +440,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="GIF" id="A0q-mk-kmr">
                         <barButtonItem key="backBarButtonItem" title="Back" id="QPO-fH-ypH"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Fd7-Zd-1ck"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="Fd7-Zd-1ck">
+                            <connections>
+                                <action selector="shareButton:" destination="P30-rL-Cym" id="HaK-DW-cxd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="oJl-bb-w1x" id="FTE-17-ngj"/>
                         <outlet property="detailImageView" destination="dCF-9F-jWH" id="PP0-26-bsj"/>
-                        <outlet property="saveGifButton" destination="SEz-4i-jQe" id="aKn-Wq-weV"/>
+                        <outlet property="saveButton" destination="SEz-4i-jQe" id="Xjo-eT-7bM"/>
+                        <outlet property="shareButton" destination="Fd7-Zd-1ck" id="djA-o4-xr5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9l-PO-VH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
