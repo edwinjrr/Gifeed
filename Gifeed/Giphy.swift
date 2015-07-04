@@ -122,7 +122,7 @@ class Giphy {
         
         return task
     }
-    
+
     func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()

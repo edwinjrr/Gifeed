@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhH-8q-Qj2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhH-8q-Qj2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SFPixelate.ttf">
+            <string>SFPixelate</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Saved Gifs-->
         <scene sceneID="5jF-Tn-mDh">
@@ -111,16 +116,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
-                                <rect key="frame" x="8" y="64" width="576" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="Vi0-c3-goa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XgV-cI-RXU">
-                                <rect key="frame" x="0.0" y="139" width="600" height="412"/>
+                                <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Io0-yA-1M5">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -163,29 +160,40 @@
                                     <outlet property="delegate" destination="9Y7-0S-ugd" id="JDK-8b-Nn6"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending now!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ro-fV-QRg">
-                                <rect key="frame" x="0.0" y="99" width="600" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
+                                <rect key="frame" x="8" y="64" width="552" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="vqR-BC-8Yz"/>
+                                    <constraint firstAttribute="height" constant="40" id="Vi0-c3-goa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="SFPixelate" family="SF Pixelate" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-N4-aqD">
+                                <rect key="frame" x="559" y="64" width="42" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="guO-FH-c7a"/>
+                                    <constraint firstAttribute="height" constant="40" id="xdh-Wf-OCP"/>
+                                </constraints>
+                                <state key="normal" image="Search_gray">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButton:" destination="9Y7-0S-ugd" eventType="touchUpInside" id="PDX-gr-UH9"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="XgV-cI-RXU" secondAttribute="trailing" constant="-16" id="1sP-E2-40Q"/>
-                            <constraint firstItem="XgV-cI-RXU" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="Dcj-ng-IX6"/>
-                            <constraint firstItem="XgV-cI-RXU" firstAttribute="top" secondItem="6Ro-fV-QRg" secondAttribute="bottom" id="Jxe-Zb-d2J"/>
+                            <constraint firstItem="N9S-N4-aqD" firstAttribute="top" secondItem="pfr-Bb-u7O" secondAttribute="bottom" id="B7W-CP-7Xo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N9S-N4-aqD" secondAttribute="trailing" constant="-17" id="D1k-6w-RPO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XgV-cI-RXU" secondAttribute="trailing" constant="-16" id="JOZ-sl-u9s"/>
+                            <constraint firstItem="XgV-cI-RXU" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="Lhm-PY-kJe"/>
+                            <constraint firstItem="XgV-cI-RXU" firstAttribute="top" secondItem="bfE-Xu-6H3" secondAttribute="bottom" id="WZz-ij-0VB"/>
                             <constraint firstItem="bfE-Xu-6H3" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-8" id="XWl-fE-ei6"/>
-                            <constraint firstItem="bfE-Xu-6H3" firstAttribute="trailing" secondItem="asw-Fj-GIH" secondAttribute="trailingMargin" id="Yr4-ym-ZBH"/>
-                            <constraint firstItem="6Ro-fV-QRg" firstAttribute="leading" secondItem="asw-Fj-GIH" secondAttribute="leadingMargin" constant="-16" id="gjd-Wu-fhS"/>
+                            <constraint firstItem="XgV-cI-RXU" firstAttribute="bottom" secondItem="asw-Fj-GIH" secondAttribute="bottomMargin" id="cA9-72-jNb"/>
                             <constraint firstItem="bfE-Xu-6H3" firstAttribute="top" secondItem="pfr-Bb-u7O" secondAttribute="bottom" id="iiN-Es-rhZ"/>
-                            <constraint firstItem="0bI-lM-81W" firstAttribute="top" secondItem="XgV-cI-RXU" secondAttribute="bottom" id="rfi-7l-xSE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6Ro-fV-QRg" secondAttribute="trailing" constant="-16" id="vQm-4j-Rgh"/>
-                            <constraint firstItem="6Ro-fV-QRg" firstAttribute="top" secondItem="bfE-Xu-6H3" secondAttribute="bottom" id="yo2-Vo-bdQ"/>
+                            <constraint firstItem="N9S-N4-aqD" firstAttribute="leading" secondItem="bfE-Xu-6H3" secondAttribute="trailing" constant="-1" id="n4M-Tj-2oM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gifeed" id="sRy-ta-pq4">
@@ -197,9 +205,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchButton" destination="N9S-N4-aqD" id="IIV-Tg-UXk"/>
                         <outlet property="searchTextField" destination="bfE-Xu-6H3" id="QtC-PD-J82"/>
                         <outlet property="trendingGifsCollectionView" destination="XgV-cI-RXU" id="TJh-Or-29u"/>
-                        <outlet property="trendingNowLabel" destination="6Ro-fV-QRg" id="8Py-rZ-eep"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sg-Jq-F2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,7 +441,7 @@
                                 <rect key="frame" x="282" y="269" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dCF-9F-jWH" firstAttribute="centerY" secondItem="oJl-bb-w1x" secondAttribute="centerY" id="Cvj-Fo-eMI"/>
                             <constraint firstItem="6Ra-65-gKZ" firstAttribute="top" secondItem="SEz-4i-jQe" secondAttribute="bottom" id="Mq8-xq-2SZ"/>
@@ -524,6 +532,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Search_gray" width="40" height="40"/>
         <image name="delete_icon" width="240" height="234"/>
     </resources>
 </document>

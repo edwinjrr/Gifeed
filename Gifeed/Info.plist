@@ -36,6 +36,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFPixelate-Bold.ttf</string>
+		<string>SFPixelate-BoldOblique.ttf</string>
+		<string>SFPixelate-Oblique.ttf</string>
+		<string>SFPixelate.ttf</string>
+		<string>SFPixelateShaded-Bold.ttf</string>
+		<string>SFPixelateShaded-BoldObliqu.ttf</string>
+		<string>SFPixelateShaded-Oblique.ttf</string>
+		<string>SFPixelateShaded.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

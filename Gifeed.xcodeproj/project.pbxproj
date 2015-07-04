@@ -30,6 +30,15 @@
 		21A69A4C1B476BA200F95128 /* infinite.gif in Resources */ = {isa = PBXBuildFile; fileRef = 21A69A4B1B476BA200F95128 /* infinite.gif */; };
 		21CBE0351B436F2200FF761E /* SavedGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CBE0341B436F2200FF761E /* SavedGifCell.swift */; };
 		21DA60251B38E24100334FFF /* TrendingGifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA60241B38E24100334FFF /* TrendingGifCell.swift */; };
+		21E0AD9A1B484AFC0086AB3B /* SFPixelate-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD921B4845380086AB3B /* SFPixelate-Bold.ttf */; };
+		21E0AD9B1B484AFD0086AB3B /* SFPixelate-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD931B4845380086AB3B /* SFPixelate-BoldOblique.ttf */; };
+		21E0AD9C1B484AFD0086AB3B /* SFPixelate-Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD941B4845380086AB3B /* SFPixelate-Oblique.ttf */; };
+		21E0AD9D1B484AFD0086AB3B /* SFPixelate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD951B4845380086AB3B /* SFPixelate.ttf */; };
+		21E0AD9E1B484AFD0086AB3B /* SFPixelateShaded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD961B4845380086AB3B /* SFPixelateShaded-Bold.ttf */; };
+		21E0AD9F1B484AFD0086AB3B /* SFPixelateShaded-BoldObliqu.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD971B4845380086AB3B /* SFPixelateShaded-BoldObliqu.ttf */; };
+		21E0ADA01B484AFD0086AB3B /* SFPixelateShaded-Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD981B4845380086AB3B /* SFPixelateShaded-Oblique.ttf */; };
+		21E0ADA11B484AFD0086AB3B /* SFPixelateShaded.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21E0AD991B4845380086AB3B /* SFPixelateShaded.ttf */; };
+		21E0ADA31B4858810086AB3B /* search.gif in Resources */ = {isa = PBXBuildFile; fileRef = 21E0ADA21B4858810086AB3B /* search.gif */; };
 		21E47ACC1B46271D00ADE40F /* ResultsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E47ACB1B46271D00ADE40F /* ResultsCache.swift */; };
 		21E5F0471B3F1C8000382804 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5F0461B3F1C8000382804 /* ResultCell.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +82,15 @@
 		21A69A4B1B476BA200F95128 /* infinite.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite.gif; sourceTree = "<group>"; };
 		21CBE0341B436F2200FF761E /* SavedGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifCell.swift; sourceTree = "<group>"; };
 		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
+		21E0AD921B4845380086AB3B /* SFPixelate-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelate-Bold.ttf"; sourceTree = "<group>"; };
+		21E0AD931B4845380086AB3B /* SFPixelate-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelate-BoldOblique.ttf"; sourceTree = "<group>"; };
+		21E0AD941B4845380086AB3B /* SFPixelate-Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelate-Oblique.ttf"; sourceTree = "<group>"; };
+		21E0AD951B4845380086AB3B /* SFPixelate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPixelate.ttf; sourceTree = "<group>"; };
+		21E0AD961B4845380086AB3B /* SFPixelateShaded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelateShaded-Bold.ttf"; sourceTree = "<group>"; };
+		21E0AD971B4845380086AB3B /* SFPixelateShaded-BoldObliqu.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelateShaded-BoldObliqu.ttf"; sourceTree = "<group>"; };
+		21E0AD981B4845380086AB3B /* SFPixelateShaded-Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFPixelateShaded-Oblique.ttf"; sourceTree = "<group>"; };
+		21E0AD991B4845380086AB3B /* SFPixelateShaded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPixelateShaded.ttf; sourceTree = "<group>"; };
+		21E0ADA21B4858810086AB3B /* search.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search.gif; sourceTree = "<group>"; };
 		21E47ACB1B46271D00ADE40F /* ResultsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsCache.swift; sourceTree = "<group>"; };
 		21E5F0461B3F1C8000382804 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +151,16 @@
 		212B4A1A1B372D42008BF6DC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				21E0AD921B4845380086AB3B /* SFPixelate-Bold.ttf */,
+				21E0AD931B4845380086AB3B /* SFPixelate-BoldOblique.ttf */,
+				21E0AD941B4845380086AB3B /* SFPixelate-Oblique.ttf */,
+				21E0AD951B4845380086AB3B /* SFPixelate.ttf */,
+				21E0AD961B4845380086AB3B /* SFPixelateShaded-Bold.ttf */,
+				21E0AD971B4845380086AB3B /* SFPixelateShaded-BoldObliqu.ttf */,
+				21E0AD981B4845380086AB3B /* SFPixelateShaded-Oblique.ttf */,
+				21E0AD991B4845380086AB3B /* SFPixelateShaded.ttf */,
 				21A69A4B1B476BA200F95128 /* infinite.gif */,
+				21E0ADA21B4858810086AB3B /* search.gif */,
 				212B4A1B1B372D42008BF6DC /* Info.plist */,
 				212503E61B3B7A610081C48E /* Gifeed-Bridging-Header.h */,
 			);
@@ -276,10 +303,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E0AD9A1B484AFC0086AB3B /* SFPixelate-Bold.ttf in Resources */,
+				21E0AD9B1B484AFD0086AB3B /* SFPixelate-BoldOblique.ttf in Resources */,
+				21E0AD9C1B484AFD0086AB3B /* SFPixelate-Oblique.ttf in Resources */,
+				21E0AD9D1B484AFD0086AB3B /* SFPixelate.ttf in Resources */,
+				21E0AD9E1B484AFD0086AB3B /* SFPixelateShaded-Bold.ttf in Resources */,
+				21E0AD9F1B484AFD0086AB3B /* SFPixelateShaded-BoldObliqu.ttf in Resources */,
+				21E0ADA01B484AFD0086AB3B /* SFPixelateShaded-Oblique.ttf in Resources */,
+				21E0ADA11B484AFD0086AB3B /* SFPixelateShaded.ttf in Resources */,
 				212B4A251B372D42008BF6DC /* Main.storyboard in Resources */,
 				212B4A2A1B372D42008BF6DC /* LaunchScreen.xib in Resources */,
 				21A69A4C1B476BA200F95128 /* infinite.gif in Resources */,
 				212B4A271B372D42008BF6DC /* Images.xcassets in Resources */,
+				21E0ADA31B4858810086AB3B /* search.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

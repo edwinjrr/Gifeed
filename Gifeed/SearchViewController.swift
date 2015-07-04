@@ -13,14 +13,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
-    @IBOutlet weak var trendingNowLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     
     var gifs = [Gif]()
-    
     var tapRecognizer: UITapGestureRecognizer!
     var refreshControl: UIRefreshControl!
-    
     var temporaryContext: NSManagedObjectContext!
+    var searchImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +43,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         refreshControl.addTarget(self, action: "handleRefreshControl:", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.tintColor = UIColor.whiteColor()
         trendingGifsCollectionView.addSubview(refreshControl)
+        
+        //Prepare the gif image for the search button.
+        var searchImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("search", withExtension: "gif")!)
+        searchImage = UIImage.animatedImageWithData(searchImageData!)
+        searchButton.setImage(searchImage, forState: UIControlState.Normal)
     }
         
     // Layout the collection view
@@ -139,7 +143,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func textFieldDidBeginEditing(textField: UITextField) {
         
         self.trendingGifsCollectionView.alpha = 0.25
-        self.trendingNowLabel.alpha = 0.25
+        self.searchButton.enabled = true
+        self.searchButton.imageView?.image = searchImage
         
         /* Add tap recognizer to dismiss keyboard */
         self.addKeyboardDismissRecognizer()
@@ -163,7 +168,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.searchTextField.endEditing(true)
         self.searchTextField.text = ""
         self.trendingGifsCollectionView.alpha = 1
-        self.trendingNowLabel.alpha = 1
+        self.searchButton.enabled = false
         
         /* Remove tap recognizer */
         self.removeKeyboardDismissRecognizer()
@@ -179,6 +184,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func handleRefreshControl(sender: UIRefreshControl) {
         downloadTrendingGifs()
+    }
+    
+    @IBAction func searchButton(sender: AnyObject) {
+        segueToResultsViewController()
     }
 }
 
