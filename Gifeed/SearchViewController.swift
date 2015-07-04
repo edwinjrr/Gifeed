@@ -17,7 +17,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     var gifs = [Gif]()
     
-    var tapRecognizer: UITapGestureRecognizer? = nil
+    var tapRecognizer: UITapGestureRecognizer!
+    var refreshControl: UIRefreshControl!
     
     var temporaryContext: NSManagedObjectContext!
     
@@ -37,8 +38,12 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         searchTextField.delegate = self
         
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
-        tapRecognizer?.numberOfTapsRequired = 1
+        tapRecognizer.numberOfTapsRequired = 1
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefreshControl:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.tintColor = UIColor.whiteColor()
+        trendingGifsCollectionView.addSubview(refreshControl)
     }
         
     // Layout the collection view
@@ -69,6 +74,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let gif = gifs[indexPath.item]
         
+        cell.backgroundColor = UIColor.grayColor()
         cell.loadingIndicator.startAnimating()
         cell.imageView.image = nil
         
@@ -121,6 +127,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             self.trendingGifsCollectionView.reloadData()
+                            self.refreshControl.endRefreshing()
                         }
                     }
                 }
@@ -168,6 +175,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         detailController.navigationBarTitle = searchTextField.text
         
         self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
+    func handleRefreshControl(sender: UIRefreshControl) {
+        downloadTrendingGifs()
     }
 }
 
