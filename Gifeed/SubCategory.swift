@@ -8,12 +8,11 @@
 
 import Foundation
 
-class SubCategory {
+struct SubCategory {
     
     let name: String
     
     init(name: String) {
         self.name = name
     }
-    
 }

@@ -44,6 +44,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefreshControl:", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.backgroundColor = UIColor(red: 177/255, green: 45/255, blue: 1, alpha: 1)
         trendingGifsCollectionView.addSubview(refreshControl)
         
         //Prepare the animated gif image for the search button.
@@ -58,7 +59,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if motion == .MotionShake {
-            self.searchTextField.text = "shake it off"
+            self.searchTextField.text = "Shake it off"
             segueToResultsViewController()
         }
     }

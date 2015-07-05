@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Category {
+struct Category {
     
     let name: String
     let subCategories: [SubCategory]
@@ -17,5 +17,5 @@ class Category {
         self.name = name
         self.subCategories = subCategories
     }
-
 }
+
