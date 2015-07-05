@@ -60,35 +60,43 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func downloadGifsBySearchString() {
         
-        let searchStringFormatted = searchString.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        //Check for internet connection first.
+        if Reachability.isConnectedToNetwork() == true {
         
-        Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringFormatted, completionHandler: { (results, error) -> Void in
+            let searchStringFormatted = searchString.stringByReplacingOccurrencesOfString(" ", withString: "+")
             
-            if let error = error {
-                println("Error with the Giphy method.") //<--- Setup an AlertView here!
-            }
-            else {
+            Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringFormatted, completionHandler: { (results, error) -> Void in
                 
-                if let results = results {
+                if let error = error {
+                    println("Error with the Giphy method.") //<--- Setup an AlertView here!
+                }
+                else {
                     
-                    if results.isEmpty {
+                    if let results = results {
                         
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.notFoundImageView.hidden = false
-                            self.notFoundImageView.image = self.notFoundImage
+                        if results.isEmpty {
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.notFoundImageView.hidden = false
+                                self.notFoundImageView.image = self.notFoundImage
+                            }
                         }
-                    }
-                    else {
-                        
-                        self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.resultsTableView.reloadData()
+                        else {
+                            
+                            self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.resultsTableView.reloadData()
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
+        else {
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
     
     //MARK: Table view data source methods:
@@ -107,17 +115,17 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.loadingIndicator.startAnimating()
         cell.resultImageView.image = nil
-        cell.sourceLabel.text = ""
+        //cell.sourceLabel.text = ""
         cell.sizeLabel.text = ""
         
-        var sourceStringFormatted: String!
+        //var sourceStringFormatted: String!
         
-        if gif.imageSource != "" {
-            sourceStringFormatted = gif.imageSource.stringByReplacingOccurrencesOfString("http://", withString: "")
-        }
-        else {
-            sourceStringFormatted = "We know nothing..."
-        }
+//        if gif.imageSource != "" {
+//            sourceStringFormatted = gif.imageSource.stringByReplacingOccurrencesOfString("http://", withString: "")
+//        }
+//        else {
+//            sourceStringFormatted = "We know nothing..."
+//        }
         
         var imageSizeFormatted = sizeNumberFormatting(gif.imageSize)
         
@@ -126,7 +134,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             let image = UIImage(data: gif.cacheStillPhotoImage!)
             stillImage = image
             cell.loadingIndicator.stopAnimating()
-            cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
+            //cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
             cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
         }
         else {
@@ -144,7 +152,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.resultImageView.image = image
                         cell.loadingIndicator.stopAnimating()
-                        cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
+                        //cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
                         cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
                     }
                 }

@@ -11,7 +11,7 @@ import UIKit
 class ResultCell: UITableViewCell {
     
     @IBOutlet weak var resultImageView: UIImageView!
-    @IBOutlet weak var sourceLabel: UILabel!
+    //@IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     

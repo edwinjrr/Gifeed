@@ -25,6 +25,7 @@ class Giphy {
         let methodParameters = [
             "q": searchString,
             "api_key": apiKey,
+            "limit": "50"
         ]
         
         let session = NSURLSession.sharedSession()

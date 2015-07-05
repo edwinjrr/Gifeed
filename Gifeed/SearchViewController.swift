@@ -14,6 +14,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var trendingNowLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     
     var gifs = [Gif]()
     var tapRecognizer: UITapGestureRecognizer!
@@ -113,32 +115,43 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadTrendingGifs() {
         
-        Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
+        //Check for internet connection first.
+        if Reachability.isConnectedToNetwork() == true {
             
-            if let error = error {
-                println("Error with the Giphy method.") //<--- Setup an AlertView here!
-            }
-            else {
+            retryButton.hidden = true
+            
+            Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
                 
-                if let results = results {
+                if let error = error {
+                    println("Error with the Giphy method.") //<--- Setup an AlertView here!
+                }
+                else {
                     
-                    if results.isEmpty {
-                        println("Empty array") //<--- Setup an placeholder image!
-                    }
-                    else {
-                    
-                        self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
+                    if let results = results {
                         
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.trendingGifsCollectionView.reloadData()
-                            self.refreshControl.endRefreshing()
+                        if results.isEmpty {
+                            println("Empty array") //<--- Setup an placeholder image!
+                        }
+                        else {
+                            
+                            self.gifs = Gif.gifsFromResults(results, insertIntoManagedObjectContext: self.temporaryContext)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.trendingGifsCollectionView.reloadData()
+                                self.refreshControl.endRefreshing()
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
+        else {
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            retryButton.hidden = false
+        }
     }
-    
+
     //MARK: Textfield delegate methods:
     func textFieldDidBeginEditing(textField: UITextField) {
         
@@ -188,6 +201,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBAction func searchButton(sender: AnyObject) {
         segueToResultsViewController()
+    }
+    @IBAction func retryLoading(sender: AnyObject) {
+        downloadTrendingGifs()
     }
 }
 

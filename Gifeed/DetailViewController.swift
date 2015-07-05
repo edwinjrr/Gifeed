@@ -60,7 +60,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             
             self.imageData = selectedGif.photoImage
            
-            
             //Update the cell later, on the main thread
             dispatch_async(dispatch_get_main_queue()) {
                 self.detailImageView.image = image
@@ -69,23 +68,32 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         else {
-            
-            let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
+                //Checking for internet connection first.
+                if Reachability.isConnectedToNetwork() == true {
                 
-                if let data = imageData {
-                    //Create the image
-                    let image = UIImage.animatedImageWithData(data)
+                let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
                     
-                    self.imageData = data
-                    
-                    //Update the cell later, on the main thread
-                    dispatch_async(dispatch_get_main_queue()) {
+                    if let data = imageData {
+                        //Create the image
+                        let image = UIImage.animatedImageWithData(data)
                         
-                        self.detailImageView.image = image
-                        self.activityIndicator.stopAnimating()
-                        self.shareButton.enabled = true
+                        self.imageData = data
+                        
+                        //Update the cell later, on the main thread
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                            self.detailImageView.image = image
+                            self.activityIndicator.stopAnimating()
+                            self.shareButton.enabled = true
+                        }
                     }
                 }
+            }
+            else {
+                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                    self.activityIndicator.stopAnimating()
+                    hideSaveButton(true)
             }
         }
     }
