@@ -47,8 +47,6 @@ class Giphy {
                 /* Using the data! */
                 if let imagesArray = parsedResult.valueForKey("data") as? [[String:AnyObject]] {
                     
-                    //var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
-                    
                     completionHandler(results: imagesArray, error: nil)
                     
                 } else {
@@ -86,8 +84,6 @@ class Giphy {
                 
                 /* Using the data! */
                 if let imagesArray = parsedResult.valueForKey("data") as? [[String:AnyObject]] {
-                    
-                    //var gifs = Gif.gifsFromResults(imagesArray, insertIntoManagedObjectContext: self.sharedContext)
                     
                     completionHandler(results: imagesArray, error: nil)
                     

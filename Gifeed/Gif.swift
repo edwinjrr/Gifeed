@@ -18,6 +18,7 @@ class Gif: NSManagedObject {
     @NSManaged var stillImageURL: String
     @NSManaged var imageSize: String
     @NSManaged var imageSource: String
+    @NSManaged var imageBitlyURL: String
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -30,6 +31,7 @@ class Gif: NSManagedObject {
         
         imageID = dictionary["id"] as! String
         imageSource = dictionary["source"] as! String
+        imageBitlyURL = dictionary["bitly_url"] as! String
         
         let images = dictionary["images"] as! [String:AnyObject]
         let original = images["original"] as! [String:AnyObject]

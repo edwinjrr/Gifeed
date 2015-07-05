@@ -125,6 +125,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let dictionary: [String: AnyObject] = [
             "id" : selectedGif.imageID,
             "source" : selectedGif.imageSource,
+            "bitly_url" : selectedGif.imageBitlyURL,
             "images" : ["original" : [
                 "url": selectedGif.animatedImageURL,
                 "size": selectedGif.imageSize],
@@ -139,7 +140,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func shareImage() {
-        let activityController = UIActivityViewController(activityItems: [imageData], applicationActivities: nil)
+        
+        /* By now, the best way for sharing an animated gif from an app is to copy the link of it. In case of facebook, it recognize it and insert the GIF ready to be animated with a clic inside the post. If you try to share the UIImage or NSData of the animated GIF, only the first frame will get shared. */
+        
+        let stringForSharing = "\(selectedGif.imageBitlyURL) via Gifeed App"
+        
+        let activityController = UIActivityViewController(activityItems: [stringForSharing], applicationActivities: nil)
         
         presentViewController(activityController, animated: true, completion: nil)
     }

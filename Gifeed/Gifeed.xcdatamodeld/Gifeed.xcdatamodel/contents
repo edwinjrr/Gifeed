@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Gif" representedClassName="Gif" syncable="YES">
         <attribute name="animatedImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageBitlyURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageSize" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stillImageURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Gif" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Gif" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
