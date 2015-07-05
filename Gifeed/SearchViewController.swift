@@ -51,6 +51,17 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         searchImage = UIImage.animatedImageWithData(searchImageData!)
         searchButton.setImage(searchImage, forState: UIControlState.Normal)
     }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if motion == .MotionShake {
+            self.searchTextField.text = "shake it off"
+            segueToResultsViewController()
+        }
+    }
         
     // Layout the collection view
     
