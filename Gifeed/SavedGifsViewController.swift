@@ -83,6 +83,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SavedGifCell", forIndexPath: indexPath) as! SavedGifCell
         
+        cell.backgroundColor = UIColor.grayColor()
         cell.loadingIndicator.startAnimating()
         cell.imageView.image = nil
         

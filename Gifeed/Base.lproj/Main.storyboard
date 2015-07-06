@@ -157,7 +157,7 @@
                                     <outlet property="delegate" destination="9Y7-0S-ugd" id="JDK-8b-Nn6"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Search all the GIFs" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search all the GIFs" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Xu-6H3">
                                 <rect key="frame" x="8" y="76" width="543" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -219,7 +219,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="GIFEED" id="sRy-ta-pq4">
-                        <barButtonItem key="backBarButtonItem" title="  " id="2rS-d7-Sni"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="9i9-ja-By7"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" image="giphy" id="BXf-4h-qil">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="Fsj-92-CjW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -237,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sg-Jq-F2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="-134"/>
+            <point key="canvasLocation" x="1758" y="-222"/>
         </scene>
         <!--CATEGORIES-->
         <scene sceneID="Y3l-v8-7pG">
@@ -437,7 +440,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
                                 <rect key="frame" x="0.0" y="506" width="600" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.69320518090000005" green="0.17542146380000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="GLN-Ce-AJz"/>
                                 </constraints>
@@ -446,7 +449,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchUpInside" id="oY8-7U-PWC"/>
+                                    <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchDown" id="nSy-fh-bzz"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
@@ -496,7 +499,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.69411764705882351" green="0.17647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
@@ -507,7 +510,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8Y-oO-pcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="316" y="197"/>
+            <point key="canvasLocation" x="286" y="141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aAp-VC-Dup">
@@ -528,13 +531,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3t-It-u0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1058" y="-134"/>
+            <point key="canvasLocation" x="1058" y="-222"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Saved GIFs-->
         <scene sceneID="EkW-lP-cd6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BUg-Ms-rmN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="5RZ-sc-dgI"/>
+                    <tabBarItem key="tabBarItem" title="Saved GIFs" image="saved" id="5RZ-sc-dgI"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
@@ -555,7 +558,9 @@
     <resources>
         <image name="Search_gray" width="40" height="40"/>
         <image name="delete_icon" width="240" height="234"/>
-        <image name="menu" width="30" height="25"/>
+        <image name="giphy" width="65" height="25"/>
+        <image name="menu" width="29" height="24"/>
+        <image name="saved" width="23" height="25"/>
     </resources>
     <color key="tintColor" red="0.69320518092105265" green="0.17542146381578946" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

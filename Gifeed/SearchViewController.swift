@@ -51,6 +51,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var searchImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("search", withExtension: "gif")!)
         searchImage = UIImage.animatedImageWithData(searchImageData!)
         searchButton.setImage(searchImage, forState: UIControlState.Normal)
+        
+        /* Configure textfield */
+        let textFieldPaddingViewFrame = CGRectMake(0.0, 0.0, 13.0, 0.0);
+        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
+        searchTextField.leftView = textFieldPaddingView
+        searchTextField.leftViewMode = .Always
+        
+        let title = UIImage(named: "title.png")
+        navigationItem.titleView = UIImageView(image: title)
     }
     
     override func canBecomeFirstResponder() -> Bool {

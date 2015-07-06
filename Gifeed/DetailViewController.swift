@@ -106,6 +106,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         saveImage()
     }
     
+//    @IBAction func saveButton(sender: AnyObject) {
+//        saveImage()
+//    }
+    
     func hideSaveButton(status: Bool) {
         if status {
             saveButton.hidden = true
