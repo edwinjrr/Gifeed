@@ -252,7 +252,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CategoryCell" textLabel="wne-jY-S3h" rowHeight="44" style="IBUITableViewCellStyleDefault" id="lU8-Xu-hzu" customClass="CategoryCell" customModule="Gifeed" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CategoryCell" textLabel="wne-jY-S3h" rowHeight="44" style="IBUITableViewCellStyleDefault" id="lU8-Xu-hzu">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lU8-Xu-hzu" id="EAG-DO-Q89">
                                     <autoresizingMask key="autoresizingMask"/>

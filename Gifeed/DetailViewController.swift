@@ -172,6 +172,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     //Called when a double tap gets detected.
     func handleDoubleTap(sender: UITapGestureRecognizer){
         if !saveButton.hidden {
+            self.hideSaveButton()
             saveImage()
         }
     }

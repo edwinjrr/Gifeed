@@ -75,6 +75,7 @@
 		217092761B40781400FFE568 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		217092781B40840800FFE568 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		21A69A4B1B476BA200F95128 /* infinite.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite.gif; sourceTree = "<group>"; };
+		21BD6B631B4C8AC6006ACD7C /* Gifeed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gifeed-Bridging-Header.h"; sourceTree = "<group>"; };
 		21CBE0341B436F2200FF761E /* SavedGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGifCell.swift; sourceTree = "<group>"; };
 		21DA60241B38E24100334FFF /* TrendingGifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGifCell.swift; sourceTree = "<group>"; };
 		21E0ADA21B4858810086AB3B /* search.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search.gif; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 				21A69A4B1B476BA200F95128 /* infinite.gif */,
 				21E0ADA21B4858810086AB3B /* search.gif */,
 				212B4A1B1B372D42008BF6DC /* Info.plist */,
+				21BD6B631B4C8AC6006ACD7C /* Gifeed-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
