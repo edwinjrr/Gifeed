@@ -33,6 +33,7 @@ class Gif: NSManagedObject {
         imageSource = dictionary["source"] as! String
         imageBitlyURL = dictionary["bitly_url"] as! String
         
+        //This properties help to navigate through the JSON objects from the Giphy response.
         let images = dictionary["images"] as! [String:AnyObject]
         let original = images["original"] as! [String:AnyObject]
         let originalStill = images["original_still"] as! [String:AnyObject]
@@ -42,7 +43,7 @@ class Gif: NSManagedObject {
         imageSize = original["size"] as! String
     }
     
-    /* Helper: Given an array of dictionaries, convert them to an array of GIF objects */
+    // Helper: Given an array of dictionaries, convert them to an array of GIF objects
     static func gifsFromResults(results: [[String : AnyObject]], insertIntoManagedObjectContext context: NSManagedObjectContext) -> [Gif] {
         var gifs = [Gif]()
         

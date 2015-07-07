@@ -15,7 +15,7 @@ class CoreDataStackManager {
     
     // MARK: - Shared Instance
     
-    /**
+    /*
     *  This class variable provides an easy way to get access
     *  to a shared instance of the CoreDataStackManager class.
     */

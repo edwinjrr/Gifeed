@@ -8,6 +8,9 @@
 
 import Foundation
 
+//Check for internet connection.
+//I got this class from http://www.brianjcoleman.com/tutorial-check-for-internet-connection-in-swift/
+
 public class Reachability {
     
     class func isConnectedToNetwork()->Bool {

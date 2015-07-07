@@ -11,27 +11,29 @@ import CoreData
 
 class ResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //Outlets
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var notFoundImageView: UIImageView!
     
+    //Properties
     var gifs = [Gif]()
     var searchString: String!
     var navigationBarTitle: String!
     var notFoundImage: UIImage!
-    
-    var temporaryFiles = [String]()
-    
     var temporaryContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Get the managed object context
+        let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
+        
+        //Replace the title with the search string
         self.navigationItem.title = navigationBarTitle
 
+        //Set the row height of the TableViewCells.
         resultsTableView.rowHeight = UITableViewAutomaticDimension
         resultsTableView.estimatedRowHeight = 350
-        
-        let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
         
         // Set the temporary context
         temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
@@ -48,7 +50,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             downloadGifsBySearchString()
         }
         else {
-            println("Empty searchString. Show placeholder")
+            self.notFoundImageView.hidden = false
+            self.notFoundImageView.image = self.notFoundImage
         }
     }
     
@@ -68,7 +71,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             Giphy.sharedInstance().getGifFromGiphyBySearch(searchStringFormatted, completionHandler: { (results, error) -> Void in
                 
                 if let error = error {
-                    println("Error with the Giphy method.") //<--- Setup an AlertView here!
+                    self.alertView("Oops!!", message: "Something went wrong, try again...")
                 }
                 else {
                     
@@ -94,14 +97,20 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             })
         }
         else {
-            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            
+            //If there isn't internet connection, an alert view will appear.
+            var alert = UIAlertView(
+                title: "No Internet Connection",
+                message: "Make sure your device is connected to the internet.",
+                delegate: nil,
+                cancelButtonTitle: "OK")
+            
             alert.show()
         }
     }
     
     //MARK: Table view data source methods:
     
-    //TODO:---->Short it!
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gifs.count
     }
@@ -115,18 +124,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.loadingIndicator.startAnimating()
         cell.resultImageView.image = nil
-        //cell.sourceLabel.text = ""
         cell.sizeLabel.text = ""
         
-        //var sourceStringFormatted: String!
-        
-//        if gif.imageSource != "" {
-//            sourceStringFormatted = gif.imageSource.stringByReplacingOccurrencesOfString("http://", withString: "")
-//        }
-//        else {
-//            sourceStringFormatted = "We know nothing..."
-//        }
-        
+        //Get the image size in a format easy to understand.
         var imageSizeFormatted = sizeNumberFormatting(gif.imageSize)
         
         if gif.cacheStillPhotoImage != nil {
@@ -134,7 +134,6 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             let image = UIImage(data: gif.cacheStillPhotoImage!)
             stillImage = image
             cell.loadingIndicator.stopAnimating()
-            //cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
             cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
         }
         else {
@@ -152,7 +151,6 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.resultImageView.image = image
                         cell.loadingIndicator.stopAnimating()
-                        //cell.sourceLabel.text = "Source: \(sourceStringFormatted)"
                         cell.sizeLabel.text = "Size: \(imageSizeFormatted)"
                     }
                 }
@@ -171,16 +169,21 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: Table view delegate methods:
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")! as! DetailViewController
+        
+        //Send the selected GIF to the DetailViewController.
         detailController.selectedGif = self.gifs[indexPath.row]
         
         self.navigationController!.pushViewController(detailController, animated: true)
         
+        //Prevent that the cell stays selected.
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     //MARK: Helper methods:
     
+    //Get the image size in a format easy to understand.
     func sizeNumberFormatting(imageSizeString: String) -> String {
         
         let imageSizeNumber = (imageSizeString as NSString).floatValue
@@ -202,9 +205,17 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         return formattedSizeString
     }
     
+    //Meant to format the image source string. Currently not used.
     func subStringByRange(string: String, start: Int, end: Int) -> String {
         let range = Range(start: advance(string.startIndex, start),
             end: advance(string.startIndex, end))
         return string.substringWithRange(range)
+    }
+    
+    //Show a alert view controller with a title, a message and an "OK" button.
+    func alertView(title: String, message: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }

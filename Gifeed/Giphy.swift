@@ -20,7 +20,7 @@ class Giphy {
     
     let apiKey = "dc6zaTOxFJmzC" //Public API for development
     
-    func getGifFromGiphyBySearch(searchString: String, completionHandler: (results: [[String:AnyObject]]?, error: String?) -> Void) {
+    func getGifFromGiphyBySearch(searchString: String, completionHandler: (results: [[String:AnyObject]]?, error: NSError?) -> Void) {
         
         let methodParameters = [
             "q": searchString,
@@ -36,7 +36,7 @@ class Giphy {
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
         
             if let error = downloadError {
-                completionHandler(results: nil, error: "Couldn't find gifs") //Communicate the situation to the user. <--- Setup an AlertView here!
+                completionHandler(results: nil, error: downloadError)
             }
             else {
                 
@@ -51,16 +51,14 @@ class Giphy {
                     
                 } else {
                     
-                    completionHandler(results: nil, error: "Cant find key 'photos'") //Communicate the situation to the user. <--- Setup an AlertView here!
+                    completionHandler(results: nil, error: NSError(domain: "getGifFromGiphyBySearch parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getGifFromGiphyBySearch"]))
                 }
             }
         }
-        
         task.resume()
-    
     }
     
-    func getTrendingGifFromGiphy(completionHandler: (results: [[String:AnyObject]]?, error: String?) -> Void) {
+    func getTrendingGifFromGiphy(completionHandler: (results: [[String:AnyObject]]?, error: NSError?) -> Void) {
         
         let methodParameters = [
             "api_key": apiKey,
@@ -74,7 +72,7 @@ class Giphy {
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
             if let error = downloadError {
-                completionHandler(results: nil, error: "Couldn't find gifs") //Communicate the situation to the user. <--- Setup an AlertView here!
+                completionHandler(results: nil, error: downloadError)
             }
             else {
                 
@@ -89,7 +87,7 @@ class Giphy {
                     
                 } else {
                     
-                    completionHandler(results: nil, error: "Cant find key 'photos'") //Communicate the situation to the user. <--- Setup an AlertView here!
+                    completionHandler(results: nil, error: NSError(domain: "getTrendingGifFromGiphy parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getTrendingGifFromGiphy"]))
                 }
             }
         }
@@ -109,7 +107,7 @@ class Giphy {
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
             if let error = downloadError {
-                completionHandler(imageData: nil, error: error)
+                completionHandler(imageData: nil, error: downloadError)
             } else {
                 completionHandler(imageData: data, error: nil)
             }
@@ -120,6 +118,7 @@ class Giphy {
         return task
     }
 
+    /* Helper function: Given a dictionary of parameters, convert to a string for a url */
     func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
@@ -157,7 +156,7 @@ class Giphy {
         return Singleton.sharedInstance
     }
     
-    // MARK: - Shared Image Cache
+    // MARK: - Shared Image Cache and Results Cache
     
     struct Caches {
         static let imageCache = ImageCache()

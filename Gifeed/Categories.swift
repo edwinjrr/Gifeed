@@ -8,6 +8,8 @@
 
 import Foundation
 
+//All the categories and subcategories already set.
+
 class Categories {
     
     let categoriesArray = [

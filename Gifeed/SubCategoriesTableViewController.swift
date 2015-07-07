@@ -16,6 +16,7 @@ class SubCategoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Replace the title with the category selected.
         self.navigationItem.title = navigationBarTitle
     }
     

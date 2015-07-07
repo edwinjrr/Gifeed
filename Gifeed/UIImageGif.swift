@@ -9,6 +9,9 @@
 import UIKit
 import ImageIO
 
+//Extension that adds a set of methods that allow to play animated GIFs.
+//I got it from: https://github.com/bahlo/SwiftGif
+
 extension UIImage {
     
     class func animatedImageWithData(data: NSData) -> UIImage? {

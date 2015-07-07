@@ -8,6 +8,8 @@
 
 import UIKit
 
+//This class only stores images inside the cache for the results in ResultsViewController and the SearchViewController.
+
 class ResultsCache {
     
     private var inMemoryCache = NSCache()
@@ -19,15 +21,10 @@ class ResultsCache {
         let path = pathForIdentifier(identifier!)
         var data: NSData?
         
-        // First try the memory cache
+        // Try the memory cache
         if let image = inMemoryCache.objectForKey(path) as? NSData {
             return image
         }
-        
-        // Next Try the hard drive
-//        if let data = NSData(contentsOfFile: path) {
-//            return data
-//        }
         
         return nil
     }
@@ -40,15 +37,11 @@ class ResultsCache {
         // If the image is nil, remove images from the cache
         if image == nil {
             inMemoryCache.removeObjectForKey(path)
-            //NSFileManager.defaultManager().removeItemAtPath(path, error: nil)
             return
         }
         
         // Otherwise, keep the image in memory
         inMemoryCache.setObject(image!, forKey: path)
-        
-        // And in documents directory
-        //image!.writeToFile(path, atomically: true)
     }
     
     // MARK: - Helper

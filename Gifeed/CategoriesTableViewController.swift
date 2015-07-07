@@ -14,9 +14,6 @@ class CategoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
     }
 
     // MARK: - Table view data source
@@ -38,8 +35,11 @@ class CategoriesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         let subCategoriesController = self.storyboard!.instantiateViewControllerWithIdentifier("SubCategoriesTableViewController")! as! SubCategoriesTableViewController
+        
         let category = categories.categoriesArray[indexPath.row]
+        
         subCategoriesController.subCategories = category.subCategories
         subCategoriesController.navigationBarTitle = category.name
         

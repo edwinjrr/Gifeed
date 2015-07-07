@@ -11,12 +11,16 @@ import CoreData
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var searchTextField: UITextField! //<--- Set up delegate.
+    //Outlets
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var trendingGifsCollectionView: UICollectionView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var trendingNowLabel: UILabel!
+    
+    //If the connection fails this button will appear allowing the user to try again.
     @IBOutlet weak var retryButton: UIButton!
     
+    //Properties
     var gifs = [Gif]()
     var tapRecognizer: UITapGestureRecognizer!
     var refreshControl: UIRefreshControl!
@@ -26,42 +30,24 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
+        //Get the managed object context
+        //let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
         
-        // Set the temporary context
+        // Set the temporary context for the trending GIFs objects.
         temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         temporaryContext.persistentStoreCoordinator = sharedContext.persistentStoreCoordinator
         
-        //Download the more trending Gifs from Giphy
+        //Download the trending Gifs from Giphy
         downloadTrendingGifs()
         
-        //Setting up the textfield
+        //Setting up the textfield delegate
         searchTextField.delegate = self
         
-        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
-        tapRecognizer.numberOfTapsRequired = 1
-        
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "handleRefreshControl:", forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.tintColor = UIColor.whiteColor()
-        refreshControl.backgroundColor = UIColor(red: 177/255, green: 45/255, blue: 1, alpha: 1)
-        trendingGifsCollectionView.addSubview(refreshControl)
-        
-        //Prepare the animated gif image for the search button.
-        var searchImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("search", withExtension: "gif")!)
-        searchImage = UIImage.animatedImageWithData(searchImageData!)
-        searchButton.setImage(searchImage, forState: UIControlState.Normal)
-        
-        /* Configure textfield */
-        let textFieldPaddingViewFrame = CGRectMake(0.0, 0.0, 13.0, 0.0);
-        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
-        searchTextField.leftView = textFieldPaddingView
-        searchTextField.leftViewMode = .Always
-        
-        let title = UIImage(named: "title.png")
-        navigationItem.titleView = UIImageView(image: title)
+        //Configure the UI
+        configureUI()
     }
     
+    // Setup the shake gesture for secret search.
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
@@ -72,9 +58,14 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             segueToResultsViewController()
         }
     }
-        
-    // Layout the collection view
     
+    // MARK: - Core Data Convenience.
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext!
+    }
+    
+    // Layout the collection view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -107,6 +98,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if gif.cacheStillPhotoImage != nil {
             
+            //Retrieve the image
             let image = UIImage(data: gif.cacheStillPhotoImage!)
             cell.imageView.image = image
             cell.loadingIndicator.stopAnimating()
@@ -121,7 +113,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     //Update the model, so that the information gets cashed
                     gif.cacheStillPhotoImage = data
                     
-                    // update the cell later, on the main thread
+                    //Update the cell later, on the main thread
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.imageView!.image = image
                         cell.loadingIndicator.stopAnimating()
@@ -140,31 +132,36 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Collection view delegate methods
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")! as! DetailViewController
         
+        //Send the selected GIF to the DetailViewController.
         detailController.selectedGif = self.gifs[indexPath.item]
         
         self.navigationController!.pushViewController(detailController, animated: true)
     }
+    
+    //MARK: Giphy API search method:
     
     func downloadTrendingGifs() {
         
         //Check for internet connection first.
         if Reachability.isConnectedToNetwork() == true {
             
+            //Make sure that the retry will be hidden if there is internet connection.
             retryButton.hidden = true
             
             Giphy.sharedInstance().getTrendingGifFromGiphy({ (results, error) -> Void in
                 
                 if let error = error {
-                    println("Error with the Giphy method.") //<--- Setup an AlertView here!
+                    self.alertView("Oops!!", message: "Something went wrong, try again...")
                 }
                 else {
                     
                     if let results = results {
                         
                         if results.isEmpty {
-                            println("Empty array") //<--- Setup an placeholder image!
+                            self.alertView("Oops!!", message: "Nothing found")
                         }
                         else {
                             
@@ -180,13 +177,23 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             })
         }
         else {
-            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            
+            //If there isn't internet connection, an alert view will appear and the "Retry" button too.
+            var alert = UIAlertView(
+                title: "No Internet Connection",
+                message: "Make sure your device is connected to the internet.",
+                delegate: nil,
+                cancelButtonTitle: "OK")
+            
             alert.show()
+            
+            //Show the "Retry" button.
             retryButton.hidden = false
         }
     }
 
     //MARK: Textfield delegate methods:
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         
         self.trendingGifsCollectionView.alpha = 0.25
@@ -197,12 +204,14 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.addKeyboardDismissRecognizer()
     }
     
+    //Called when the "Enter" button in the keyboard gets pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         segueToResultsViewController()
         
         return true
     }
     
+    //Adding and removing the recognizer for one tap
     func addKeyboardDismissRecognizer() {
         self.view.addGestureRecognizer(tapRecognizer!)
     }
@@ -211,6 +220,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.view.removeGestureRecognizer(tapRecognizer!)
     }
     
+    //Called when the keyboard is active and the user taps the view.
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.searchTextField.endEditing(true)
         self.searchTextField.text = ""
@@ -221,23 +231,68 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.removeKeyboardDismissRecognizer()
     }
     
-    func segueToResultsViewController() {
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController")! as! ResultsViewController
-        detailController.searchString = searchTextField.text
-        detailController.navigationBarTitle = searchTextField.text
-        
-        self.navigationController!.pushViewController(detailController, animated: true)
-    }
-    
+    //Called when the user pulls down the collection view.
     func handleRefreshControl(sender: UIRefreshControl) {
         downloadTrendingGifs()
     }
+    
+    //MARK: IBActions:
     
     @IBAction func searchButton(sender: AnyObject) {
         segueToResultsViewController()
     }
     @IBAction func retryLoading(sender: AnyObject) {
         downloadTrendingGifs()
+    }
+    
+    //MARK: Helper methods:
+    
+    func configureUI() {
+        
+        //Set a tap recognizer to hide the keyboard touching the view.
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        tapRecognizer.numberOfTapsRequired = 1
+        
+        //Set a refresh control to allow pull down to refresh the collection view items.
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefreshControl:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.backgroundColor = UIColor(red: 177/255, green: 45/255, blue: 1, alpha: 1)
+        trendingGifsCollectionView.addSubview(refreshControl)
+        
+        //Prepare the animated gif image for the search button.
+        var searchImageData = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("search", withExtension: "gif")!)
+        searchImage = UIImage.animatedImageWithData(searchImageData!)
+        searchButton.setImage(searchImage, forState: UIControlState.Normal)
+        
+        // Configure textfield
+        let textFieldPaddingViewFrame = CGRectMake(0.0, 0.0, 13.0, 0.0);
+        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
+        searchTextField.leftView = textFieldPaddingView
+        searchTextField.leftViewMode = .Always
+        
+        //Configure the title
+        let title = UIImage(named: "title.png")
+        navigationItem.titleView = UIImageView(image: title)
+    }
+    
+    func segueToResultsViewController() {
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController")! as! ResultsViewController
+        
+        //Send the text from the textfield to the ResultsViewController as the searchString.
+        detailController.searchString = searchTextField.text
+        
+        //Replace the title with the search string
+        detailController.navigationBarTitle = searchTextField.text
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
+    //Show a alert view controller with a title, a message and an "OK" button.
+    func alertView(title: String, message: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 

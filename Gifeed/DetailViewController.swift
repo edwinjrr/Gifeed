@@ -11,12 +11,14 @@ import CoreData
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
 
+    //Outlets
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var savingActivityIndicator: UIActivityIndicatorView!
     
+    //Properties
     var selectedGif: Gif!
     var imageIdentifier: String!
     var imageData: NSData!
@@ -25,23 +27,27 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set a double tap recognizer to save the GIF.
         doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
         doubleTapRecognizer.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(doubleTapRecognizer!)
     }
     
     override func viewWillAppear(animated: Bool) {
         
+        //Present the view with the save button hidden, if the photo isn't saved it will appear.
         self.saveButton.hidden = true
-        
-        self.view.addGestureRecognizer(doubleTapRecognizer!)
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        //Start to download the animated GIF.
         showAnimatedGif(selectedGif)
     }
     
     override func viewWillDisappear(animated: Bool) {
         
+        //Remove the double tap gesture.
         self.view.removeGestureRecognizer(doubleTapRecognizer!)
     }
     
@@ -59,11 +65,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         if selectedGif.photoImage != nil {
             
-            //Hide the save button
-            //hideSaveButton()
-            
             let image = UIImage.animatedImageWithData(selectedGif.photoImage!)
-            
             self.imageData = selectedGif.photoImage
            
             //Update the cell later, on the main thread
@@ -74,14 +76,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         else {
-                //Checking for internet connection first.
-                if Reachability.isConnectedToNetwork() == true {
+            
+            //Checking for internet connection first.
+            if Reachability.isConnectedToNetwork() == true {
                     
-                    
-                
                 let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
                     
                     if let data = imageData {
+                        
                         //Create the image
                         let image = UIImage.animatedImageWithData(data)
                         
@@ -99,43 +101,38 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
             else {
-                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                
+                //If there isn't internet connection, an alert view will appear.
+                var alert = UIAlertView(
+                    title: "No Internet Connection",
+                    message: "Make sure your device is connected to the internet.",
+                    delegate: nil,
+                    cancelButtonTitle: "OK")
+                
                 alert.show()
-                    self.activityIndicator.stopAnimating()
-                    hideSaveButton()
+                
+                //Make sure that the activity indicator and the save button are hidden.
+                self.activityIndicator.stopAnimating()
+                hideSaveButton()
             }
         }
     }
+    
+    //MARK: IBActions:
 
     @IBAction func shareButton(sender: AnyObject) {
         shareImage()
     }
     
-//    @IBAction func saveButton(sender: AnyObject) {
-//        
-//        //saveButton.hidden = true
-//        
-//        //Hide the save button
-//        self.hideSaveButton()
-//        
-//        saveImage()
-//    }
-    
     @IBAction func saveButton(sender: AnyObject) {
-        
-        
         
         //Hide the save button
         self.hideSaveButton()
     
         saveImage()
-        
-
     }
     
-    func hideSaveButton() {
-        saveButton.hidden = true
-    }
+    //MARK: Helper methods:
     
     func saveImage() {
         
@@ -159,7 +156,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let gifToBeSaved = Gif(dictionary: dictionary, insertIntoManagedObjectContext: sharedContext)
         
         saveContext()
-        
     }
     
     func shareImage() {
@@ -173,10 +169,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         presentViewController(activityController, animated: true, completion: nil)
     }
     
+    //Called when a double tap gets detected.
     func handleDoubleTap(sender: UITapGestureRecognizer){
         if !saveButton.hidden {
             saveImage()
         }
     }
     
+    func hideSaveButton() {
+        saveButton.hidden = true
+    }
 }
