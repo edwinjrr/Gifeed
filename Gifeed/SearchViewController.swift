@@ -105,22 +105,34 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.loadingIndicator.startAnimating()
         cell.imageView.image = nil
         
-        let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
+        if gif.cacheStillPhotoImage != nil {
             
-            if let data = imageData {
-                let image = UIImage(data: data)
+            let image = UIImage(data: gif.cacheStillPhotoImage!)
+            cell.imageView.image = image
+            cell.loadingIndicator.stopAnimating()
+            
+        } else {
+            
+            let task = Giphy.sharedInstance().taskForImage(gif.stillImageURL) { imageData, error in
                 
-                // update the cell later, on the main thread
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.imageView!.image = image
-                    cell.loadingIndicator.stopAnimating()
+                if let data = imageData {
+                    let image = UIImage(data: data)
+                    
+                    //Update the model, so that the information gets cashed
+                    gif.cacheStillPhotoImage = data
+                    
+                    // update the cell later, on the main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        cell.imageView!.image = image
+                        cell.loadingIndicator.stopAnimating()
+                    }
                 }
             }
+            
+            // This is the custom property on this cell. It uses a property observer,
+            // any time its value is set it canceles the previous NSURLSessionTask.
+            cell.taskToCancelifCellIsReused = task
         }
-        
-        // This is the custom property on this cell. It uses a property observer,
-        // any time its value is set it canceles the previous NSURLSessionTask.
-        cell.taskToCancelifCellIsReused = task
         
         return cell
     }
@@ -129,6 +141,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")! as! DetailViewController
+        
         detailController.selectedGif = self.gifs[indexPath.item]
         
         self.navigationController!.pushViewController(detailController, animated: true)

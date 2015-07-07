@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var savingActivityIndicator: UIActivityIndicatorView!
     
     var selectedGif: Gif!
     var imageIdentifier: String!
@@ -29,9 +30,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        showAnimatedGif(selectedGif)
+        
+        self.saveButton.hidden = true
         
         self.view.addGestureRecognizer(doubleTapRecognizer!)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        showAnimatedGif(selectedGif)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -54,7 +60,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         if selectedGif.photoImage != nil {
             
             //Hide the save button
-            hideSaveButton(true)
+            //hideSaveButton()
             
             let image = UIImage.animatedImageWithData(selectedGif.photoImage!)
             
@@ -70,6 +76,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         else {
                 //Checking for internet connection first.
                 if Reachability.isConnectedToNetwork() == true {
+                    
+                    
                 
                 let task = Giphy.sharedInstance().taskForImage(selectedGif.animatedImageURL) { imageData, error in
                     
@@ -85,6 +93,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                             self.detailImageView.image = image
                             self.activityIndicator.stopAnimating()
                             self.shareButton.enabled = true
+                            self.saveButton.hidden = false
                         }
                     }
                 }
@@ -93,7 +102,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                     self.activityIndicator.stopAnimating()
-                    hideSaveButton(true)
+                    hideSaveButton()
             }
         }
     }
@@ -102,24 +111,33 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         shareImage()
     }
     
-    @IBAction func saveButton(sender: AnyObject) {
-        saveImage()
-    }
-    
 //    @IBAction func saveButton(sender: AnyObject) {
+//        
+//        //saveButton.hidden = true
+//        
+//        //Hide the save button
+//        self.hideSaveButton()
+//        
 //        saveImage()
 //    }
     
-    func hideSaveButton(status: Bool) {
-        if status {
-            saveButton.hidden = true
-        }
+    @IBAction func saveButton(sender: AnyObject) {
+        
+        
+        
+        //Hide the save button
+        self.hideSaveButton()
+    
+        saveImage()
+        
+
+    }
+    
+    func hideSaveButton() {
+        saveButton.hidden = true
     }
     
     func saveImage() {
-        
-        //Hide the save button
-        self.hideSaveButton(true)
         
         //Update the model, so that the information gets save inside documents directory
         self.selectedGif.photoImage = imageData
@@ -141,6 +159,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let gifToBeSaved = Gif(dictionary: dictionary, insertIntoManagedObjectContext: sharedContext)
         
         saveContext()
+        
     }
     
     func shareImage() {
@@ -157,9 +176,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     func handleDoubleTap(sender: UITapGestureRecognizer){
         if !saveButton.hidden {
             saveImage()
-        }
-        else {
-            println("Already saved!")
         }
     }
     

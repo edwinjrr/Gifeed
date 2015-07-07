@@ -438,6 +438,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ijh-xD-xcN">
+                                <rect key="frame" x="290" y="466" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-4i-jQe">
                                 <rect key="frame" x="0.0" y="506" width="600" height="45"/>
                                 <color key="backgroundColor" red="0.69320518090000005" green="0.17542146380000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -448,8 +451,10 @@
                                 <state key="normal" title="Save it!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <state key="selected" title="Saving..."/>
+                                <state key="highlighted" title="Saving..."/>
                                 <connections>
-                                    <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchDown" id="nSy-fh-bzz"/>
+                                    <action selector="saveButton:" destination="P30-rL-Cym" eventType="touchUpInside" id="KbY-af-gY4"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oJl-bb-w1x">
@@ -459,9 +464,11 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dCF-9F-jWH" firstAttribute="centerY" secondItem="oJl-bb-w1x" secondAttribute="centerY" id="Cvj-Fo-eMI"/>
+                            <constraint firstAttribute="centerX" secondItem="ijh-xD-xcN" secondAttribute="centerX" id="KTA-Na-pIn"/>
                             <constraint firstItem="6Ra-65-gKZ" firstAttribute="top" secondItem="SEz-4i-jQe" secondAttribute="bottom" id="Mq8-xq-2SZ"/>
                             <constraint firstItem="dCF-9F-jWH" firstAttribute="top" secondItem="8mf-va-c9y" secondAttribute="bottom" id="Oym-36-KhK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SEz-4i-jQe" secondAttribute="trailing" constant="-16" id="Ree-B1-IRe"/>
+                            <constraint firstItem="SEz-4i-jQe" firstAttribute="top" secondItem="ijh-xD-xcN" secondAttribute="bottom" constant="20" id="SLP-3M-zrN"/>
                             <constraint firstItem="SEz-4i-jQe" firstAttribute="leading" secondItem="ipm-FQ-hiD" secondAttribute="leadingMargin" constant="-16" id="ZPy-QA-vCr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dCF-9F-jWH" secondAttribute="trailing" constant="-16" id="csr-cR-VVp"/>
                             <constraint firstItem="oJl-bb-w1x" firstAttribute="centerX" secondItem="dCF-9F-jWH" secondAttribute="centerX" id="qQc-NB-liC"/>
@@ -481,6 +488,7 @@
                         <outlet property="activityIndicator" destination="oJl-bb-w1x" id="FTE-17-ngj"/>
                         <outlet property="detailImageView" destination="dCF-9F-jWH" id="PP0-26-bsj"/>
                         <outlet property="saveButton" destination="SEz-4i-jQe" id="Xjo-eT-7bM"/>
+                        <outlet property="savingActivityIndicator" destination="ijh-xD-xcN" id="qcF-Oj-ymh"/>
                         <outlet property="shareButton" destination="Fd7-Zd-1ck" id="djA-o4-xr5"/>
                     </connections>
                 </viewController>
@@ -559,7 +567,7 @@
         <image name="Search_gray" width="40" height="40"/>
         <image name="delete_icon" width="240" height="234"/>
         <image name="giphy" width="65" height="25"/>
-        <image name="menu" width="29" height="24"/>
+        <image name="menu" width="30" height="25"/>
         <image name="saved" width="23" height="25"/>
     </resources>
     <color key="tintColor" red="0.69320518092105265" green="0.17542146381578946" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -42,7 +42,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         notFoundImage = UIImage.animatedImageWithData(notFoundImageData!)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         
         if !searchString.isEmpty {
             downloadGifsBySearchString()
