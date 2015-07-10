@@ -30,9 +30,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Get the managed object context
-        //let sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext!
-        
         // Set the temporary context for the trending GIFs objects.
         temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         temporaryContext.persistentStoreCoordinator = sharedContext.persistentStoreCoordinator
